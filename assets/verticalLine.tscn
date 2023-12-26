@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://rfapcwg88h7j"]
+
+[ext_resource type="PackedScene" uid="uid://cqwvqlpcy0dxe" path="res://assets/line.tscn" id="1_fwft7"]
+[ext_resource type="Script" path="res://scripts/verticalLine.gd" id="2_syl2y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qvoua"]
+radius = 10.0
+height = 700.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji07v"]
+height = 700.0
+
+[node name="verticalLine" instance=ExtResource("1_fwft7")]
+script = ExtResource("2_syl2y")
+
+[node name="mesh" parent="." index="0"]
+mesh = SubResource("CapsuleMesh_qvoua")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_ji07v")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

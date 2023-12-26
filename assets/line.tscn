@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqwvqlpcy0dxe"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_c3rul"]
+radius = 10.0
+height = 700.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rbhoh"]
+height = 700.0
+
+[node name="line" type="Area2D"]
+
+[node name="mesh" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+mesh = SubResource("CapsuleMesh_c3rul")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_rbhoh")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqkcp71gqe1re"]
+
+[ext_resource type="PackedScene" uid="uid://cqwvqlpcy0dxe" path="res://assets/line.tscn" id="1_b26ti"]
+[ext_resource type="Script" path="res://scripts/userLine.gd" id="2_rfrgj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wqtse"]
+radius = 10.0
+height = 700.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y365o"]
+height = 700.0
+
+[node name="userLine" instance=ExtResource("1_b26ti")]
+script = ExtResource("2_rfrgj")
+
+[node name="mesh" parent="." index="0"]
+modulate = Color(0.945098, 0.427451, 0.745098, 1)
+position = Vector2(0, 340)
+mesh = SubResource("CapsuleMesh_wqtse")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 340)
+shape = SubResource("CapsuleShape2D_y365o")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

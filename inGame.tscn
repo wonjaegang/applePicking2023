@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://1pyvlcwm81yj"]
+
+[ext_resource type="Script" path="res://scripts/inGameManager.gd" id="1_61h2t"]
+[ext_resource type="Script" path="res://scripts/verticalLineManager.gd" id="2_0jiyk"]
+[ext_resource type="Script" path="res://scripts/horizontalLineManager.gd" id="3_t8fai"]
+[ext_resource type="PackedScene" uid="uid://rfapcwg88h7j" path="res://assets/verticalLine.tscn" id="3_ueu0p"]
+[ext_resource type="Script" path="res://scripts/userLineManager.gd" id="4_82wdj"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jxoqy"]
+
+[node name="inGame" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(360, 640)
+scale = Vector2(720, 1280)
+texture = SubResource("CanvasTexture_jxoqy")
+
+[node name="inGameManager" type="Node2D" parent="."]
+script = ExtResource("1_61h2t")
+
+[node name="verticalLineManager" type="Node2D" parent="."]
+script = ExtResource("2_0jiyk")
+
+[node name="verticalLine1" parent="verticalLineManager" instance=ExtResource("3_ueu0p")]
+position = Vector2(240, 712)
+
+[node name="verticalLine2" parent="verticalLineManager" instance=ExtResource("3_ueu0p")]
+position = Vector2(456, 712)
+
+[node name="horizontalLineManager" type="Node2D" parent="."]
+script = ExtResource("3_t8fai")
+
+[node name="userLineManager" type="Node2D" parent="."]
+script = ExtResource("4_82wdj")
+
+[node name="inGameMenuButton" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 104.0
+offset_bottom = 88.0
+
+[connection signal="verticalLinePressed" from="verticalLineManager/verticalLine1" to="userLineManager" method="_vertical_line_pressed"]
+[connection signal="verticalLinePressed" from="verticalLineManager/verticalLine2" to="userLineManager" method="_vertical_line_pressed"]
