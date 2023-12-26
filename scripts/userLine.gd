@@ -25,19 +25,19 @@ func _on_area_exited(area):
 
 
 func checkIsProper():
+    """
+    생성 가능한 라인인지 판단
+    """
     if collideHorizontalCount == 0 and collideVerticalCount == 2:
         proper = true
     else:
         proper = false
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
+        
+func changePositionByHeight():
+    """
+    mesh/collide 높이 변화시 position 유지
+    """
+    $mesh.position.y = $mesh.mesh.height / 2 - $mesh.mesh.radius
+    $CollisionShape2D.position.y = $CollisionShape2D.shape.height / 2 - $CollisionShape2D.shape.radius
     
