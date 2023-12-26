@@ -10,4 +10,3 @@ func _on_input_event(viewport, event, shape_idx):
             emit_signal("verticalLinePressed", self)
     else:
         pressing = false
-

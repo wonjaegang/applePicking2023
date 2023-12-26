@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqkcp71gqe1re"]
+[gd_scene load_steps=6 format=3 uid="uid://cqkcp71gqe1re"]
 
 [ext_resource type="PackedScene" uid="uid://cqwvqlpcy0dxe" path="res://assets/line.tscn" id="1_b26ti"]
 [ext_resource type="Script" path="res://scripts/userLine.gd" id="2_rfrgj"]
@@ -9,7 +9,11 @@ radius = 10.0
 height = 700.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y365o"]
+resource_local_to_scene = true
 height = 700.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w13px"]
+resource_local_to_scene = true
 
 [node name="userLine" instance=ExtResource("1_b26ti")]
 script = ExtResource("2_rfrgj")
@@ -21,6 +25,14 @@ mesh = SubResource("CapsuleMesh_wqtse")
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CapsuleShape2D_y365o")
 
+[node name="lineEnd" type="Area2D" parent="." index="2"]
+position = Vector2(0, 690)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lineEnd" index="0"]
+shape = SubResource("CircleShape2D_w13px")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
+[connection signal="area_entered" from="lineEnd" to="." method="_end_area_entered"]
+[connection signal="area_exited" from="lineEnd" to="." method="_end_area_exited"]
