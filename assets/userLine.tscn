@@ -10,7 +10,7 @@ height = 700.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y365o"]
 resource_local_to_scene = true
-height = 700.0
+height = 720.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w13px"]
 resource_local_to_scene = true

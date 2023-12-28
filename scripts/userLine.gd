@@ -10,7 +10,7 @@ func setLineLength(length):
     선 길이 설정, position 유지
     """
     $mesh.mesh.height = length
-    $CollisionShape2D.shape.height = length
+    $CollisionShape2D.shape.height = length + 2 * $mesh.mesh.radius
     
     $mesh.position.y = length / 2
     $CollisionShape2D.position.y = length / 2
@@ -38,7 +38,6 @@ func _on_area_entered(area):
     """
     새로운 수직선과 충돌시 stick
     """
-    print(area.get_parent())
     if area.get_parent().name == "verticalLineManager":
         if area != startVerticalNode:
             stickFlg = true

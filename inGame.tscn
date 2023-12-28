@@ -6,14 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://rfapcwg88h7j" path="res://assets/verticalLine.tscn" id="3_ueu0p"]
 [ext_resource type="Script" path="res://scripts/userLineManager.gd" id="4_82wdj"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_jxoqy"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_jlj83"]
 
 [node name="inGame" type="Node2D"]
 
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(360, 640)
 scale = Vector2(720, 1280)
-texture = SubResource("CanvasTexture_jxoqy")
+texture = SubResource("CanvasTexture_jlj83")
 
 [node name="inGameManager" type="Node2D" parent="."]
 script = ExtResource("1_61h2t")
@@ -22,10 +22,13 @@ script = ExtResource("1_61h2t")
 script = ExtResource("2_0jiyk")
 
 [node name="verticalLine1" parent="verticalLineManager" instance=ExtResource("3_ueu0p")]
-position = Vector2(250, 400)
+position = Vector2(175, 400)
 
 [node name="verticalLine2" parent="verticalLineManager" instance=ExtResource("3_ueu0p")]
-position = Vector2(450, 400)
+position = Vector2(363, 400)
+
+[node name="verticalLine3" parent="verticalLineManager" instance=ExtResource("3_ueu0p")]
+position = Vector2(556, 400)
 
 [node name="horizontalLineManager" type="Node2D" parent="."]
 script = ExtResource("3_t8fai")
@@ -42,3 +45,5 @@ offset_bottom = 88.0
 [connection signal="verticalLinePressed" from="verticalLineManager/verticalLine1" to="userLineManager" method="_vertical_line_pressed"]
 [connection signal="item_rect_changed" from="verticalLineManager/verticalLine2" to="verticalLineManager/verticalLine2" method="_on_item_rect_changed"]
 [connection signal="verticalLinePressed" from="verticalLineManager/verticalLine2" to="userLineManager" method="_vertical_line_pressed"]
+[connection signal="item_rect_changed" from="verticalLineManager/verticalLine3" to="verticalLineManager/verticalLine3" method="_on_item_rect_changed"]
+[connection signal="verticalLinePressed" from="verticalLineManager/verticalLine3" to="userLineManager" method="_vertical_line_pressed"]

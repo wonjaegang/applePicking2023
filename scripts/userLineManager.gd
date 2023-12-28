@@ -10,6 +10,9 @@ var userLineMinH
 var generatingLine = false
 
 func _vertical_line_pressed(verticalLineNode):
+    """
+    userLine 생성하여 출력
+    """
     generatingLine = true
     
     var userLine = userLineScene.instantiate()

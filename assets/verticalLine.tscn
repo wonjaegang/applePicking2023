@@ -11,7 +11,7 @@ height = 700.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ji07v"]
 resource_local_to_scene = true
 radius = 40.0
-height = 700.0
+height = 720.0
 
 [node name="verticalLine" instance=ExtResource("1_fwft7")]
 script = ExtResource("2_syl2y")
