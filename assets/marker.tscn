@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpsgb7rq45do4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_denja"]
+radius = 30.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_wnsek"]
+radius = 30.0
+height = 60.0
+
+[node name="marker" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_denja")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+mesh = SubResource("SphereMesh_wnsek")

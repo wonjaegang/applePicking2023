@@ -3,6 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://cqwvqlpcy0dxe" path="res://assets/line.tscn" id="1_b26ti"]
 [ext_resource type="Script" path="res://scripts/userLine.gd" id="2_rfrgj"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q616r"]
+resource_local_to_scene = true
+radius = 12.5
+height = 705.0
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wqtse"]
 resource_local_to_scene = true
 radius = 10.0
@@ -12,25 +17,20 @@ height = 700.0
 resource_local_to_scene = true
 height = 720.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_w13px"]
-resource_local_to_scene = true
-
 [node name="userLine" instance=ExtResource("1_b26ti")]
 script = ExtResource("2_rfrgj")
 
-[node name="mesh" parent="." index="0"]
+[node name="outerMesh" parent="." index="0"]
+mesh = SubResource("CapsuleMesh_q616r")
+
+[node name="mesh" parent="." index="1"]
 modulate = Color(0.662745, 0.6, 0.815686, 1)
 mesh = SubResource("CapsuleMesh_wqtse")
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("CapsuleShape2D_y365o")
 
-[node name="lineEnd" type="Area2D" parent="." index="2"]
-position = Vector2(0, 690)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="lineEnd" index="0"]
-shape = SubResource("CircleShape2D_w13px")
-
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]

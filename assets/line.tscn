@@ -1,4 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqwvqlpcy0dxe"]
+[gd_scene load_steps=4 format=3 uid="uid://cqwvqlpcy0dxe"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_js2a2"]
+radius = 12.5
+height = 705.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c3rul"]
 radius = 10.0
@@ -8,6 +12,11 @@ height = 700.0
 height = 720.0
 
 [node name="line" type="Area2D"]
+
+[node name="outerMesh" type="MeshInstance2D" parent="."]
+visible = false
+position = Vector2(0, 350)
+mesh = SubResource("CapsuleMesh_js2a2")
 
 [node name="mesh" type="MeshInstance2D" parent="."]
 modulate = Color(0, 0, 0, 1)

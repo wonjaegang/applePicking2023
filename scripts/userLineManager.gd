@@ -1,8 +1,8 @@
 extends Node2D
 
 # 추후 game manager 에서 관리
-const Y_MIN = 400 + 10 * 3
-const Y_MAX = 400 + 700 - 10 * 3
+const Y_MIN = 300 + 10 * 3
+const Y_MAX = 300 + 700 - 10 * 3
 
 var userLineScene = preload("res://assets/userLine.tscn")
 var userLineMinH
@@ -16,7 +16,7 @@ func _vertical_line_pressed(verticalLineNode):
     generatingLine = true
     
     var userLine = userLineScene.instantiate()
-    userLineMinH = userLine.get_child(0).mesh.radius * 2
+    userLineMinH = userLine.get_node("mesh").mesh.radius * 2
     
     userLine.startVerticalNode = verticalLineNode
     userLine.position.x = verticalLineNode.position.x
