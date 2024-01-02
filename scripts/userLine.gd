@@ -1,7 +1,7 @@
 extends Area2D
 
 var startVerticalNode
-var endVerticalNode
+var endVerticalNode = null
 var stickFlg = false
 
 
@@ -53,7 +53,6 @@ func _on_area_entered(area):
     # 새로운 수직선과 충돌시 stick
     if area.get_parent().name == "verticalLineManager":
         if area != startVerticalNode:
-            stickFlg = true
             endVerticalNode = area   
                      
     # 평행선/유저선과 충돌 시 충돌 가시화

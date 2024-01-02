@@ -27,20 +27,32 @@ func _vertical_line_pressed(verticalLineNode):
                                                                                         
 func _process(delta):
     if generatingLine:
-        var newline = get_child(-1)
-        if Input.is_mouse_button_pressed(1):
-            var end = get_viewport().get_mouse_position()
-            # 수직선에 닿았을 때
-            if newline.stickFlg:
-                end.x = newline.endVerticalNode.position.x
-            # 위/아래 경계선 내로 지정
-            end.y = max(min(end.y, Y_MAX), Y_MIN)
+        setGeneratingLine()     
+          
+
+func setGeneratingLine():
+    """
+    터치/드래그로 생성중인 userLine 위치조정 및 생성/삭제
+    """
+    var newline = get_child(-1)
+    
+    # 터치 중에는 마우스 포인터의 위치를 따라 선 이동
+    if Input.is_mouse_button_pressed(1):
+        var end = get_viewport().get_mouse_position()
+        # 수직선에 닿았을 때
+        if newline.endVerticalNode:
+            end.x = newline.endVerticalNode.position.x
+            newline.stickFlg = true
+        # 위/아래 경계선 내로 지정
+        end.y = max(min(end.y, Y_MAX), Y_MIN)
+        
+        var diff = end - newline.position
+        newline.rotation = atan2(diff.y, diff.x) - PI/2
+        if diff.length() > userLineMinH:
+            newline.setLineLength(diff.length())
             
-            var diff = end - newline.position
-            newline.rotation = atan2(diff.y, diff.x) - PI/2
-            if diff.length() > userLineMinH:
-                newline.setLineLength(diff.length())
-        else:
-            generatingLine = false
-            if not newline.checkIsProper():
-                newline.queue_free()
+    # 터치 종료시 생성 또는 삭제
+    else:
+        generatingLine = false
+        if not newline.checkIsProper():
+            newline.queue_free()
