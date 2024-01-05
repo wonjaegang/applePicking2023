@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cqkcp71gqe1re"]
 
-[ext_resource type="PackedScene" uid="uid://cqwvqlpcy0dxe" path="res://assets/line.tscn" id="1_b26ti"]
-[ext_resource type="Script" path="res://scripts/userLine.gd" id="2_rfrgj"]
+[ext_resource type="PackedScene" uid="uid://cqwvqlpcy0dxe" path="res://assets/line.tscn" id="1_n2m7a"]
+[ext_resource type="Script" path="res://scripts/horizontalLine.gd" id="2_4jkw5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_q616r"]
 resource_local_to_scene = true
@@ -17,8 +17,8 @@ height = 700.0
 resource_local_to_scene = true
 height = 720.0
 
-[node name="userLine" instance=ExtResource("1_b26ti")]
-script = ExtResource("2_rfrgj")
+[node name="horizontalLine" instance=ExtResource("1_n2m7a")]
+script = ExtResource("2_4jkw5")
 
 [node name="outerMesh" parent="." index="0"]
 mesh = SubResource("CapsuleMesh_q616r")

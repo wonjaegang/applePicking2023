@@ -3,7 +3,7 @@ extends Area2D
 var startVerticalNode
 var endVerticalNode = null
 var stickFlg = false
-
+var isUserLine = false
 
 func setLineLength(length):
     """
@@ -28,15 +28,13 @@ func setLineLength(length):
 func checkIsProper():
     """
     생성 가능한 라인인지 판단:
-        - user/horizontal 미충돌
+        - horizontal 미충돌
         - 수직선 2개와 충돌
         - 선의 끝이 수직선과 충돌
     """
     var verticalCount = 0
     for overlapping in get_overlapping_areas():
         if overlapping.get_parent().name == "horizontalLineManager":
-            return false
-        if overlapping.get_parent().name == "userLineManager":
             return false
         if overlapping.get_parent().name == "verticalLineManager":
             verticalCount += 1            
@@ -55,21 +53,15 @@ func _on_area_entered(area):
         if area != startVerticalNode:
             endVerticalNode = area   
                      
-    # 평행선/유저선과 충돌 시 충돌 가시화
+    # 평행선과 충돌 시 충돌 가시화
     if area.get_parent().name == "horizontalLineManager":
-        area.get_node("outerMesh").visible = true
-        area.get_node("outerMesh").modulate = Color(1, 0, 0)
-    if area.get_parent().name == "userLineManager":
         area.get_node("outerMesh").visible = true
         area.get_node("outerMesh").modulate = Color(1, 0, 0)
 
 
 func _on_area_exited(area):
-    # 평행선/유저선과 충돌 종료 시 충돌 종료 가시화
+    # 평행선과 충돌 종료 시 충돌 종료 가시화
     if area.get_parent().name == "horizontalLineManager":
-        area.get_node("outerMesh").visible = false
-        area.get_node("outerMesh").modulate = Color(1, 1, 1)        
-    if area.get_parent().name == "userLineManager":
         area.get_node("outerMesh").visible = false
         area.get_node("outerMesh").modulate = Color(1, 1, 1)
     
@@ -78,7 +70,7 @@ func _on_input_event(viewport, event, shape_idx):
     """
      선 클릭 시 삭제
     """
-    if event.is_pressed():
+    if event.is_pressed() and isUserLine:
         queue_free()
 
 
