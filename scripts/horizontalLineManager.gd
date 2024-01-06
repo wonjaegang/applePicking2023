@@ -3,11 +3,18 @@ extends Node2D
 # 추후 game manager 에서 관리
 const Y_MIN = 300 + 10 * 3
 const Y_MAX = 300 + 700 - 10 * 3
-
-var userLineScene = preload("res://assets/horizontalLine.tscn")
 var userLineMinH
 
+var horizontalLineScene = preload("res://assets/horizontalLine.tscn")
+
 var generatingLine = false
+
+
+func _ready():
+    # 수직선 시그널 연결
+    for verticalLine in $"../verticalLineManager".get_children():
+        verticalLine.verticalLinePressed.connect(_vertical_line_pressed)
+
 
 func _vertical_line_pressed(verticalLineNode):
     """
@@ -15,7 +22,7 @@ func _vertical_line_pressed(verticalLineNode):
     """
     generatingLine = true
     
-    var userLine = userLineScene.instantiate()
+    var userLine = horizontalLineScene.instantiate()
     userLineMinH = userLine.get_node("mesh").mesh.radius * 2
     
     userLine.isUserLine = true

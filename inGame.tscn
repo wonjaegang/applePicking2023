@@ -69,6 +69,7 @@ offset_top = 1174.0
 offset_right = 433.0
 offset_bottom = 1227.0
 
+[connection signal="generateVerticalLine" from="inGameManager" to="verticalLineManager" method="_on_in_game_manager_generate_vertical_line"]
 [connection signal="verticalLinePressed" from="verticalLineManager/verticalLine1" to="horizontalLineManager" method="_vertical_line_pressed"]
 [connection signal="item_rect_changed" from="verticalLineManager/verticalLine2" to="verticalLineManager/verticalLine2" method="_on_item_rect_changed"]
 [connection signal="verticalLinePressed" from="verticalLineManager/verticalLine2" to="horizontalLineManager" method="_vertical_line_pressed"]

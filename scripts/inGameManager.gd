@@ -1,6 +1,7 @@
 extends Node2D
 
 const LINE_WIDTH = 20
+
 const LINE_MARGIN = 30
 const VERTICAL_OFFSET_Y = 300
 const VERTICAL_INTERVAL_ARRAY = [0, 0, 150, 100, 50]
@@ -32,6 +33,9 @@ func createBoard(boardMap, lines):
     var verticalInterval = VERTICAL_INTERVAL_ARRAY[mapSize[1]]
     var verticalX = (get_viewport_rect().size[0] - verticalInterval * (mapSize[1] - 1)) * 0.5
     var verticalPos = []
+    var gridHeight = (VERTICAL_HEIGHT - 2 * LINE_MARGIN) / (mapSize[0] + 1)
+    
+    # 수직선 생성
     for verticalIdx in range(mapSize[1]):
         var pos = Vector2(verticalX, VERTICAL_OFFSET_Y)
         verticalPos.append(pos)
@@ -42,7 +46,7 @@ func createBoard(boardMap, lines):
         emit_signal("generateEndMarker", pos + Vector2(0, MARKER_OFFSET + VERTICAL_HEIGHT), 0)
         #  마커 색 전달 필요
     
-    var gridHeight = (VERTICAL_HEIGHT - 2 * LINE_MARGIN) / (mapSize[0] + 1)
+    # 수평선 생성
     for lineIdx in range(lines.type.size()):
         
         # 해당 선의 보드상의 위치 찾기
