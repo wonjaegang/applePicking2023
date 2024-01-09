@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://1pyvlcwm81yj"]
+[gd_scene load_steps=6 format=3 uid="uid://1pyvlcwm81yj"]
 
 [ext_resource type="Script" path="res://scripts/inGameManager.gd" id="1_61h2t"]
 [ext_resource type="Script" path="res://scripts/verticalLineManager.gd" id="2_0jiyk"]
-[ext_resource type="PackedScene" uid="uid://rfapcwg88h7j" path="res://assets/verticalLine.tscn" id="3_ueu0p"]
 [ext_resource type="Script" path="res://scripts/horizontalLineManager.gd" id="4_82wdj"]
-[ext_resource type="PackedScene" uid="uid://dpsgb7rq45do4" path="res://assets/marker.tscn" id="6_untdc"]
+[ext_resource type="Script" path="res://scripts/markerManager.gd" id="4_d8txm"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jlj83"]
 
@@ -21,41 +20,15 @@ script = ExtResource("1_61h2t")
 [node name="verticalLineManager" type="Node2D" parent="."]
 script = ExtResource("2_0jiyk")
 
-[node name="verticalLine1" parent="verticalLineManager" instance=ExtResource("3_ueu0p")]
-position = Vector2(167, 300)
-
-[node name="verticalLine2" parent="verticalLineManager" instance=ExtResource("3_ueu0p")]
-position = Vector2(355, 300)
-
-[node name="verticalLine3" parent="verticalLineManager" instance=ExtResource("3_ueu0p")]
-position = Vector2(548, 300)
-
 [node name="horizontalLineManager" type="Node2D" parent="."]
 script = ExtResource("4_82wdj")
 
 [node name="markerManager" type="Node2D" parent="."]
+script = ExtResource("4_d8txm")
 
 [node name="startManager" type="Node2D" parent="markerManager"]
 
-[node name="marker1" parent="markerManager/startManager" instance=ExtResource("6_untdc")]
-position = Vector2(167, 218)
-
-[node name="marker2" parent="markerManager/startManager" instance=ExtResource("6_untdc")]
-position = Vector2(356, 218)
-
-[node name="marker3" parent="markerManager/startManager" instance=ExtResource("6_untdc")]
-position = Vector2(549, 218)
-
 [node name="endManager" type="Node2D" parent="markerManager"]
-
-[node name="marker4" parent="markerManager/endManager" instance=ExtResource("6_untdc")]
-position = Vector2(164, 1093)
-
-[node name="marker5" parent="markerManager/endManager" instance=ExtResource("6_untdc")]
-position = Vector2(353, 1093)
-
-[node name="marker6" parent="markerManager/endManager" instance=ExtResource("6_untdc")]
-position = Vector2(546, 1093)
 
 [node name="inGameMenuButton" type="Button" parent="."]
 offset_left = 32.0
@@ -69,9 +42,5 @@ offset_top = 1174.0
 offset_right = 433.0
 offset_bottom = 1227.0
 
+[connection signal="generateMarker" from="inGameManager" to="markerManager" method="_on_in_game_manager_generate_marker"]
 [connection signal="generateVerticalLine" from="inGameManager" to="verticalLineManager" method="_on_in_game_manager_generate_vertical_line"]
-[connection signal="verticalLinePressed" from="verticalLineManager/verticalLine1" to="horizontalLineManager" method="_vertical_line_pressed"]
-[connection signal="item_rect_changed" from="verticalLineManager/verticalLine2" to="verticalLineManager/verticalLine2" method="_on_item_rect_changed"]
-[connection signal="verticalLinePressed" from="verticalLineManager/verticalLine2" to="horizontalLineManager" method="_vertical_line_pressed"]
-[connection signal="item_rect_changed" from="verticalLineManager/verticalLine3" to="verticalLineManager/verticalLine3" method="_on_item_rect_changed"]
-[connection signal="verticalLinePressed" from="verticalLineManager/verticalLine3" to="horizontalLineManager" method="_vertical_line_pressed"]
