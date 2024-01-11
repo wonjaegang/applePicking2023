@@ -1,5 +1,6 @@
 extends Node2D
 
+const markerSpeed = 50
 var markerScene = preload("res://assets/marker.tscn")
 
 
@@ -14,9 +15,9 @@ func _on_in_game_manager_generate_marker(pos, color, isStart):
         get_node("startManager").add_child(marker)
     else:
         get_node("endManager").add_child(marker)
-                        
-                                                                
+
+
 func _on_inGame_play_button_pressed():
     for marker in $startManager.get_children():
-        print(marker)
+        marker.velocity.y = markerSpeed
 

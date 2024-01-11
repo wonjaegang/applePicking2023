@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://1pyvlcwm81yj"]
+
+[ext_resource type="Script" path="res://scripts/inGameManager.gd" id="1_61h2t"]
+[ext_resource type="Script" path="res://scripts/verticalLineManager.gd" id="2_0jiyk"]
+[ext_resource type="Script" path="res://scripts/horizontalLineManager.gd" id="4_82wdj"]
+[ext_resource type="Script" path="res://scripts/markerManager.gd" id="4_d8txm"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jlj83"]
+
+[node name="inGame" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(360, 640)
+scale = Vector2(720, 1280)
+texture = SubResource("CanvasTexture_jlj83")
+
+[node name="inGameManager" type="Node2D" parent="."]
+script = ExtResource("1_61h2t")
+
+[node name="verticalLineManager" type="Node2D" parent="."]
+script = ExtResource("2_0jiyk")
+
+[node name="horizontalLineManager" type="Node2D" parent="."]
+script = ExtResource("4_82wdj")
+
+[node name="markerManager" type="Node2D" parent="."]
+script = ExtResource("4_d8txm")
+
+[node name="startManager" type="Node2D" parent="markerManager"]
+
+[node name="endManager" type="Node2D" parent="markerManager"]
+
+[node name="inGameMenuButton" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 104.0
+offset_bottom = 88.0
+text = "CHAPTER"
+
+[node name="inGameStoreButton" type="Button" parent="."]
+offset_left = 611.0
+offset_top = 27.0
+offset_right = 682.0
+offset_bottom = 93.0
+text = "STORE"
+
+[node name="inGameResetButton" type="Button" parent="."]
+offset_left = 142.0
+offset_top = 1142.0
+offset_right = 310.0
+offset_bottom = 1197.0
+text = "RESET"
+
+[node name="inGamePlayButton" type="Button" parent="."]
+offset_left = 400.0
+offset_top = 1142.0
+offset_right = 559.0
+offset_bottom = 1195.0
+text = "PLAY"
+
+[connection signal="generateHorizontalLine" from="inGameManager" to="horizontalLineManager" method="_generate_level_horizontal_line"]
+[connection signal="generateMarker" from="inGameManager" to="markerManager" method="_on_in_game_manager_generate_marker"]
+[connection signal="generateVerticalLine" from="inGameManager" to="verticalLineManager" method="_on_in_game_manager_generate_vertical_line"]
+[connection signal="pressed" from="inGameResetButton" to="horizontalLineManager" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="inGamePlayButton" to="markerManager" method="_on_inGame_play_button_pressed"]
