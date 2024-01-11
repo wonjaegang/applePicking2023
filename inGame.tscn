@@ -37,10 +37,17 @@ offset_right = 104.0
 offset_bottom = 88.0
 
 [node name="inGamePlayButton" type="Button" parent="."]
-offset_left = 274.0
-offset_top = 1174.0
-offset_right = 433.0
-offset_bottom = 1227.0
+offset_left = 400.0
+offset_top = 1142.0
+offset_right = 559.0
+offset_bottom = 1195.0
 
+[node name="inGameResetButton" type="Button" parent="."]
+offset_left = 142.0
+offset_top = 1142.0
+offset_right = 310.0
+offset_bottom = 1197.0
+
+[connection signal="generateHorizontalLine" from="inGameManager" to="horizontalLineManager" method="_generate_level_horizontal_line"]
 [connection signal="generateMarker" from="inGameManager" to="markerManager" method="_on_in_game_manager_generate_marker"]
 [connection signal="generateVerticalLine" from="inGameManager" to="verticalLineManager" method="_on_in_game_manager_generate_vertical_line"]

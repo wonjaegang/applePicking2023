@@ -23,15 +23,24 @@ func _vertical_line_pressed(verticalLineNode):
     generatingLine = true
     
     var userLine = horizontalLineScene.instantiate()
-    userLineMinH = userLine.get_node("mesh").mesh.radius * 2
     
     userLine.isUserLine = true
     userLine.startVerticalNode = verticalLineNode
-    userLine.position.x = verticalLineNode.position.x
-    userLine.position.y = max(min(get_viewport().get_mouse_position().y, Y_MAX), Y_MIN)
-    userLine.setLineLength(userLineMinH)
+    var posX = verticalLineNode.position.x
+    var posY = max(min(get_viewport().get_mouse_position().y, Y_MAX), Y_MIN)
+    userLine.setLinePosition(Vector2(posX, posY), Vector2(posX, posY))
     add_child(userLine)
                 
+     
+func _generate_level_horizontal_line(startPos, endPos, type, color):
+    """
+    레벨 시작 시 수평선 생성
+    """
+    var horizontalLine = horizontalLineScene.instantiate()
+    horizontalLine.get_node("mesh").modulate = color
+    horizontalLine.setLinePosition(startPos, endPos)
+    add_child(horizontalLine)
+           
                                                                                         
 func _process(delta):
     if generatingLine:
@@ -53,11 +62,8 @@ func setGeneratingUserLine():
             newline.stickFlg = true
         # 위/아래 경계선 내로 지정
         end.y = max(min(end.y, Y_MAX), Y_MIN)
-        
-        var diff = end - newline.position
-        newline.rotation = atan2(diff.y, diff.x) - PI/2
-        if diff.length() > userLineMinH:
-            newline.setLineLength(diff.length())
+        # 선 자세 설정
+        newline.setLinePosition(newline.position, end)
             
     # 터치 종료시 생성 또는 삭제
     else:

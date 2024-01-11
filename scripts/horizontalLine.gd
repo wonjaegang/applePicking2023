@@ -1,22 +1,23 @@
 extends Area2D
 
-var startVerticalNode
+var startVerticalNode = null
 var endVerticalNode = null
 var stickFlg = false
 var isUserLine = false
 
-func setLineLength(length):
+func setLinePosition(startPos, endPos):
     """
-    선 길이 설정, position 유지
+    선 길이/rotation 설정, position 유지
     """
-    var radius = 10
-    $mesh.mesh.radius = radius
+    var radius = $mesh.mesh.radius
+    var diff = endPos - startPos
+    
+    position = startPos
+    rotation = atan2(diff.y, diff.x) - PI/2
+    var length = max(diff.length(), radius * 2)
+    
     $mesh.mesh.height = length
-    
     $outerMesh.mesh.height = length + 0.5 * radius
-    $outerMesh.mesh.radius = 1.25 * radius
-    
-    $CollisionShape2D.shape.radius = radius
     $CollisionShape2D.shape.height = length + 2 * radius
     
     var position_y = length / 2
