@@ -22,7 +22,7 @@ var boardMap1 = [[1, 2, 3, 4],
                  [2, 2, 0, 0],
                  [0, 3, 2, 1],]
 var lines1 = {type = ["nrm", "nrm", "nrm", "nrm"],
-              colorDot = [Color(1, 0, 0), null, null, null],}
+              colorDot = [null, null, null, null],}
                            
 
 func _ready():
@@ -43,6 +43,10 @@ func createBoard(boardMap, lines, chapterColor):
     var verticalX = (get_viewport_rect().size[0] - verticalInterval * (mapSize[1] - 1)) * 0.5
     var verticalPos = []
     var gridHeight = (verticalHeight - 2 * LINE_MARGIN) / (mapSize[0] + 1)
+    
+    # horizontalLineManager 파라미터 지정
+    $"../horizontalLineManager".yMin = VERTICAL_OFFSET_Y + LINE_MARGIN
+    $"../horizontalLineManager".yMax = VERTICAL_OFFSET_Y + verticalHeight - LINE_MARGIN 
     
     # 수직선 생성
     for verticalIdx in range(mapSize[1]):

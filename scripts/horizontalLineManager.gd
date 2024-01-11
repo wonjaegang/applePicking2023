@@ -1,13 +1,11 @@
 extends Node2D
 
-# 추후 game manager 에서 관리
-const Y_MIN = 300 + 10 * 3
-const Y_MAX = 300 + 700 - 10 * 3
+var yMin
+var yMax
 var userLineMinH
+var generatingLine = false
 
 var horizontalLineScene = preload("res://assets/horizontalLine.tscn")
-
-var generatingLine = false
 
 
 func _ready():
@@ -27,7 +25,7 @@ func _vertical_line_pressed(verticalLineNode):
     userLine.isUserLine = true
     userLine.startVerticalNode = verticalLineNode
     var posX = verticalLineNode.position.x
-    var posY = max(min(get_viewport().get_mouse_position().y, Y_MAX), Y_MIN)
+    var posY = max(min(get_viewport().get_mouse_position().y, yMax), yMin)
     userLine.setLinePosition(Vector2(posX, posY), Vector2(posX, posY))
     add_child(userLine)
                 
@@ -37,6 +35,16 @@ func _generate_level_horizontal_line(startPos, endPos, type, color):
     레벨 시작 시 수평선 생성
     """
     var horizontalLine = horizontalLineScene.instantiate()
+    if type == "nrm":
+        pass
+    elif type == "arR":
+        pass
+    elif type == "arL":
+        pass
+    elif type == "ice":
+        pass
+    else:
+        pass
     horizontalLine.get_node("mesh").modulate = color
     horizontalLine.setLinePosition(startPos, endPos)
     add_child(horizontalLine)
@@ -60,8 +68,8 @@ func setGeneratingUserLine():
         if newline.endVerticalNode:
             end.x = newline.endVerticalNode.position.x
             newline.stickFlg = true
-        # 위/아래 경계선 내로 지정
-        end.y = max(min(end.y, Y_MAX), Y_MIN)
+        # 위/아래 범위 내로 지정
+        end.y = max(min(end.y, yMax), yMin)
         # 선 자세 설정
         newline.setLinePosition(newline.position, end)
             
@@ -70,3 +78,10 @@ func setGeneratingUserLine():
         generatingLine = false
         if not newline.checkIsProper():
             newline.queue_free()
+
+
+func _on_reset_button_pressed():
+    for line in get_children():
+        if line.isUserLine:
+            line.queue_free()
+        
