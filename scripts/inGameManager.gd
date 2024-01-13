@@ -44,9 +44,10 @@ func createBoard(boardMap, lines, chapterColor):
     var verticalPos = []
     var gridHeight = (verticalHeight - 2 * LINE_MARGIN) / (mapSize[0] + 1)
     
-    # horizontalLineManager 파라미터 지정
+    # Manager 파라미터 지정
     $"../horizontalLineManager".yMin = VERTICAL_OFFSET_Y + LINE_MARGIN
     $"../horizontalLineManager".yMax = VERTICAL_OFFSET_Y + verticalHeight - LINE_MARGIN 
+    $"../markerManager".markerDistance = verticalHeight + 2 * MARKER_OFFSET
     
     # 수직선 생성
     for verticalIdx in range(mapSize[1]):

@@ -9,7 +9,7 @@ radius = 30.0
 radius = 30.0
 height = 60.0
 
-[node name="marker" type="CharacterBody2D"]
+[node name="marker" type="Area2D"]
 script = ExtResource("1_m0m1b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,3 +18,5 @@ shape = SubResource("CircleShape2D_denja")
 [node name="mesh" type="MeshInstance2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 mesh = SubResource("SphereMesh_wnsek")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
