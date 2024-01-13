@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqkcp71gqe1re"]
+[gd_scene load_steps=8 format=3 uid="uid://cqkcp71gqe1re"]
 
 [ext_resource type="PackedScene" uid="uid://cqwvqlpcy0dxe" path="res://assets/line.tscn" id="1_n2m7a"]
 [ext_resource type="Script" path="res://scripts/horizontalLine.gd" id="2_4jkw5"]
@@ -17,6 +17,10 @@ height = 700.0
 resource_local_to_scene = true
 height = 720.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_juo5t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hk83j"]
+
 [node name="horizontalLine" instance=ExtResource("1_n2m7a")]
 script = ExtResource("2_4jkw5")
 
@@ -29,6 +33,17 @@ mesh = SubResource("CapsuleMesh_wqtse")
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("CapsuleShape2D_y365o")
+
+[node name="startArea" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="startArea" index="0"]
+shape = SubResource("CircleShape2D_juo5t")
+
+[node name="endArea" type="Area2D" parent="." index="4"]
+position = Vector2(0, 700)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="endArea" index="0"]
+shape = SubResource("CircleShape2D_hk83j")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

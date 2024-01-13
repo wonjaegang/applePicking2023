@@ -14,7 +14,7 @@ func _ready():
         verticalLine.verticalLinePressed.connect(_vertical_line_pressed)
 
 
-func _vertical_line_pressed(verticalLineNode):
+func _vertical_line_pressed(verticalLineNode: Node2D):
     """
     userLine 생성하여 출력
     """

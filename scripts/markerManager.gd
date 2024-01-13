@@ -1,10 +1,9 @@
 extends Node2D
 
-var markerDistance
 var markerScene = preload("res://assets/marker.tscn")
 
 
-func _on_in_game_manager_generate_marker(pos, color, isStart):
+func _on_in_game_manager_generate_marker(pos: Vector2, color: Color, isStart: bool):
     """
     boardMap에 따라 마커 생성
     """
@@ -18,8 +17,10 @@ func _on_in_game_manager_generate_marker(pos, color, isStart):
 
 
 func _on_inGame_play_button_pressed():
+    var viewportHeight = get_viewport_rect().size[1]
     for marker in $startManager.get_children():
-        marker.move_to(marker.position + Vector2(0, markerDistance))
+        marker.move_to(marker.position + Vector2(0, viewportHeight))
+    
 
 
 

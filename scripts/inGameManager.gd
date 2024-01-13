@@ -29,7 +29,7 @@ func _ready():
     createBoard(boardMap1, lines1, chapterColor1)
     
     
-func createBoard(boardMap, lines, chapterColor):
+func createBoard(boardMap: Array, lines: Dictionary, chapterColor: Dictionary):
     """
     보드정보에 맞추어 보드 생성
     """
@@ -46,8 +46,7 @@ func createBoard(boardMap, lines, chapterColor):
     
     # Manager 파라미터 지정
     $"../horizontalLineManager".yMin = VERTICAL_OFFSET_Y + LINE_MARGIN
-    $"../horizontalLineManager".yMax = VERTICAL_OFFSET_Y + verticalHeight - LINE_MARGIN 
-    $"../markerManager".markerDistance = verticalHeight + 2 * MARKER_OFFSET
+    $"../horizontalLineManager".yMax = VERTICAL_OFFSET_Y + verticalHeight - LINE_MARGIN
     
     # 수직선 생성
     for verticalIdx in range(mapSize[1]):

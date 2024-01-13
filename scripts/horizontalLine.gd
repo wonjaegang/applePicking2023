@@ -5,7 +5,7 @@ var endVerticalNode = null
 var stickFlg = false
 var isUserLine = false
 
-func setLinePosition(startPos, endPos):
+func setLinePosition(startPos: Vector2, endPos: Vector2):
     """
     선 길이/rotation 설정, position 유지
     """
@@ -19,11 +19,13 @@ func setLinePosition(startPos, endPos):
     $mesh.mesh.height = length
     $outerMesh.mesh.height = length + 0.5 * radius
     $CollisionShape2D.shape.height = length + 2 * radius
+    $endArea.position.y = length
     
     var position_y = length / 2
     $mesh.position.y = position_y
     $outerMesh.position.y = position_y
     $CollisionShape2D.position.y = position_y    
+    
     
     
 func checkIsProper():
