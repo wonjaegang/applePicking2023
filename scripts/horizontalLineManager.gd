@@ -3,6 +3,7 @@ extends Node2D
 var yMin
 var yMax
 var userLineMinH
+var userLineColor
 var generatingLine = false
 
 var horizontalLineScene = preload("res://assets/horizontalLine.tscn")
@@ -24,6 +25,7 @@ func _vertical_line_pressed(verticalLineNode: Node2D):
     
     userLine.isUserLine = true
     userLine.startVerticalNode = verticalLineNode
+    userLine.get_node("mesh").modulate = userLineColor
     var posX = verticalLineNode.position.x
     var posY = max(min(get_viewport().get_mouse_position().y, yMax), yMin)
     userLine.setLinePosition(Vector2(posX, posY), Vector2(posX, posY))

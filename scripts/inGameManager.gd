@@ -12,6 +12,7 @@ signal generateMarker(pos, color, isStart)
 var chapterColor1 = {background = Color("#edddd4"),
                      vertical = Color("#283d3b"),
                      horizontal = Color("283d3b"),
+                     user = Color("a999d0"),
                      marker = [Color("197278"),
                                Color("83a8a6"),
                                Color("ae9d96"),
@@ -47,6 +48,7 @@ func createBoard(boardMap: Array, lines: Dictionary, chapterColor: Dictionary):
     # Manager 파라미터 지정
     $"../horizontalLineManager".yMin = VERTICAL_OFFSET_Y + LINE_MARGIN
     $"../horizontalLineManager".yMax = VERTICAL_OFFSET_Y + verticalHeight - LINE_MARGIN
+    $"../horizontalLineManager".userLineColor = chapterColor.user
     
     # 수직선 생성
     for verticalIdx in range(mapSize[1]):
