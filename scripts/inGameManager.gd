@@ -17,7 +17,7 @@ var chapterColor1 = {background = Color("#edddd4"),
                                Color("83a8a6"),
                                Color("ae9d96"),
                                Color("d99185"),],}
-var boardMap1 = [[1, 2, 3, 4],
+var boardMap1 = [[1, 2, 3, 0],
                  [1, 0, 3, 3],
                  [0, 1, 4, 4],
                  [2, 2, 0, 0],

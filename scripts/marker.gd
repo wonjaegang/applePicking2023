@@ -36,7 +36,7 @@ func moveAlongLine(lineStart: Vector2, lineEnd: Vector2):
     onVertical = true
     move_to(Vector2(position.x, endPosY))
     
-    # 이동 중 충돌 시그널이 이미 start/end area 처리
+    # 이동 중 충돌 시그널이 이미 들어온 start/end area 처리
     for area in get_overlapping_areas():
         _on_area_entered(area)
 
