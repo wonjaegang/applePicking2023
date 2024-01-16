@@ -17,12 +17,13 @@ func _ready():
 
 func _vertical_line_pressed(verticalLineNode: Node2D):
     """
-    userLine 생성하여 출력
+    userLine 생성하여 출력, 마커 이동 중엔 X
     """
+    if $"../markerManager".isPlaying:
+        return
+        
     generatingLine = true
-    
     var userLine = horizontalLineScene.instantiate()
-    
     userLine.isUserLine = true
     userLine.startVerticalNode = verticalLineNode
     userLine.get_node("mesh").modulate = userLineColor
@@ -83,6 +84,9 @@ func setGeneratingUserLine():
 
 
 func _on_reset_button_pressed():
+    if $"../markerManager".isPlaying:
+        return
+        
     for line in get_children():
         if line.isUserLine:
             line.queue_free()

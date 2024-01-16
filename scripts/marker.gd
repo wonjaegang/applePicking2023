@@ -6,7 +6,6 @@ var startPos
 var endPosY
 var isCorrect = false
 var onVertical = true
-var lastLine = null
 
 
 func move_to(destination: Vector2):

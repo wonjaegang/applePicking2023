@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://1pyvlcwm81yj"]
+[gd_scene load_steps=8 format=3 uid="uid://1pyvlcwm81yj"]
 
 [ext_resource type="Script" path="res://scripts/inGameManager.gd" id="1_61h2t"]
 [ext_resource type="Script" path="res://scripts/verticalLineManager.gd" id="2_0jiyk"]
 [ext_resource type="Script" path="res://scripts/horizontalLineManager.gd" id="4_82wdj"]
 [ext_resource type="Script" path="res://scripts/markerManager.gd" id="4_d8txm"]
+[ext_resource type="Script" path="res://scripts/inGamePlayButton.gd" id="5_ora5h"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jlj83"]
 
@@ -67,6 +68,7 @@ offset_top = 1142.0
 offset_right = 559.0
 offset_bottom = 1195.0
 text = "PLAY"
+script = ExtResource("5_ora5h")
 
 [connection signal="generateHorizontalLine" from="inGameManager" to="horizontalLineManager" method="_generate_level_horizontal_line"]
 [connection signal="generateMarker" from="inGameManager" to="markerManager" method="_on_in_game_manager_generate_marker"]
@@ -74,3 +76,4 @@ text = "PLAY"
 [connection signal="area_entered" from="markerManager/markerGoal" to="markerManager" method="_on_marker_goal_area_entered"]
 [connection signal="pressed" from="inGameResetButton" to="horizontalLineManager" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="inGamePlayButton" to="markerManager" method="_on_inGame_play_button_pressed"]
+[connection signal="pressed" from="inGamePlayButton" to="inGamePlayButton" method="_on_pressed"]

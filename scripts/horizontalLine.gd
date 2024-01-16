@@ -73,6 +73,9 @@ func _on_input_event(viewport, event, shape_idx):
     """
      선 클릭 시 삭제
     """
+    if $"../../markerManager".isPlaying:
+        return
+        
     if event.is_pressed() and isUserLine:
         queue_free()
 

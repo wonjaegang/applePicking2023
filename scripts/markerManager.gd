@@ -2,6 +2,7 @@ extends Node2D
 
 var markerScene = preload("res://assets/marker.tscn")
 var endMarkerY
+var isPlaying = false
 var arrivedMarkerNum = 0
 var correctMarkerNum = 0
 
@@ -25,11 +26,29 @@ func _on_in_game_manager_generate_marker(pos: Vector2, color: Color, isStart: bo
         get_node("endManager").add_child(marker)
 
 
+func resetMarkers():
+    isPlaying = false
+    arrivedMarkerNum = 0
+    correctMarkerNum = 0
+    for marker in $startManager.get_children():
+        marker.isCorrect = false
+        marker.onVertical = true
+        marker.position = marker.startPos
+        if marker.tween:
+            marker.tween.kill()
+
+
 func _on_inGame_play_button_pressed():
     # 시작 마커 아래로 이동 시작
-    for marker in $startManager.get_children():
-        marker.endPosY = endMarkerY
-        marker.move_to(Vector2(marker.position.x, endMarkerY))
+    if not isPlaying:
+        isPlaying = true
+        for marker in $startManager.get_children():
+            marker.endPosY = endMarkerY
+            marker.move_to(Vector2(marker.position.x, endMarkerY))
+    
+    # 시작마커 이동 중지, 초기위치로 이동
+    else:
+        resetMarkers()
     
 
 func _on_marker_goal_area_entered(area):    
@@ -39,10 +58,26 @@ func _on_marker_goal_area_entered(area):
         if area.isCorrect: 
             correctMarkerNum += 1
             print("marker Glow!")
+        else:
+            print("marker off")
         
         # 오답/정답 판단
         if arrivedMarkerNum == $startManager.get_child_count():
             if correctMarkerNum == arrivedMarkerNum:
                 print("right answer!")
+                print("emit signal to gm")
             else:
                 print("wrong answer!")
+                print("return markers to initial point")
+                resetMarkers()
+                $"../inGamePlayButton".flipState()
+
+
+
+
+
+
+
+
+
+
