@@ -79,6 +79,8 @@ func setGeneratingUserLine():
     # 터치 종료시 생성 또는 삭제
     else:
         generatingLine = false
+        # overlapping 계산이 상대적으로 느려 타이머 사용
+        await get_tree().create_timer(0.01).timeout
         if not newline.checkIsProper():
             newline.queue_free()
 
