@@ -73,6 +73,7 @@ script = ExtResource("5_ora5h")
 [connection signal="generateHorizontalLine" from="inGameManager" to="horizontalLineManager" method="_generate_level_horizontal_line"]
 [connection signal="generateMarker" from="inGameManager" to="markerManager" method="_on_in_game_manager_generate_marker"]
 [connection signal="generateVerticalLine" from="inGameManager" to="verticalLineManager" method="_on_in_game_manager_generate_vertical_line"]
+[connection signal="levelCompleted" from="markerManager" to="inGameManager" method="_on_marker_manager_level_completed"]
 [connection signal="area_entered" from="markerManager/markerGoal" to="markerManager" method="_on_marker_goal_area_entered"]
 [connection signal="pressed" from="inGameResetButton" to="horizontalLineManager" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="inGamePlayButton" to="markerManager" method="_on_inGame_play_button_pressed"]

@@ -24,6 +24,7 @@ var boardMap1 = [[1, 2, 3, 0],
                  [0, 3, 2, 1],]
 var lines1 = {type = ["nrm", "nrm", "nrm", "nrm"],
               colorDot = [null, null, null, null],}
+var minUserLineNum1 = 2
                            
 
 func _ready():
@@ -96,7 +97,28 @@ func createBoard(boardMap: Array, lines: Dictionary, chapterColor: Dictionary):
                     chapterColor.horizontal)
         # colorDot 정보 전달 필요
         
-        
+    
+func _on_marker_manager_level_completed():
+    # 레벨 종료 시 점수 창 표시
+    var star = 0
+    var usedLineNum = 0
+    for horizontalLine in $"../horizontalLineManager".get_children():
+        if horizontalLine.isUserLine:
+            usedLineNum += 1
+    if usedLineNum < minUserLineNum1:
+        star = 4
+    elif usedLineNum == minUserLineNum1:
+        star = 3
+    elif usedLineNum <= usedLineNum + 2:
+        star = 2
+    else:
+        star = 1
+    print(star)
+
+
+
+
+
 
 
 

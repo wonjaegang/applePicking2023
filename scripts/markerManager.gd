@@ -6,6 +6,8 @@ var isPlaying = false
 var arrivedMarkerNum = 0
 var correctMarkerNum = 0
 
+signal levelCompleted
+
 
 func _on_in_game_manager_generate_marker(pos: Vector2, color: Color, isStart: bool):
     """
@@ -65,7 +67,7 @@ func _on_marker_goal_area_entered(area):
         if arrivedMarkerNum == $startManager.get_child_count():
             if correctMarkerNum == arrivedMarkerNum:
                 print("right answer!")
-                print("emit signal to gm")
+                emit_signal("levelCompleted")
             else:
                 print("wrong answer!")
                 print("return markers to initial point")
