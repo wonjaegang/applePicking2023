@@ -1,6 +1,6 @@
 extends Area2D
 
-const SPEED = 400
+const SPEED = 570
 var tween
 var startPos
 var endPosY
@@ -8,33 +8,48 @@ var isCorrect = false
 var onVertical = true
 
 
-func move_to(destination: Vector2):
+func setTweenDestination(destination: Vector2):
     """
-    현재 이동을 종료하고 목표 지점(global position)으로 이동
+    목표 지점(global position)으로 이동
     """
-    if tween:
-        tween.kill()
+    var duration = (destination - position).length() / SPEED      
+    tween.tween_property(self, "position", destination, duration)  
+
+
+func dropMarker():
+    """
+    수직선을 타고 하강
+    """
+    if not get_parent().get_parent().isPlaying:
+        return
+        
+    onVertical = true
     tween = create_tween()
-    var duration = (destination - position).length() / SPEED
-    tween.tween_property(self, "position", destination, duration)        
-
-
+    setTweenDestination(Vector2(position.x, endPosY))
+    
+    
 func moveAlongLine(lineStart: Vector2, lineEnd: Vector2):
     """
-    수평선을 타고 이동 후 다시 하강.
+    수평선을 타고 이동.
     lineStart로 먼저 이동 후 lineEnd로 이동.
     """
+    if not get_parent().get_parent().isPlaying:
+        return
+        
     onVertical = false
+    tween.kill()
+    tween = create_tween()
+    setTweenDestination(lineStart)
+    setTweenDestination(lineEnd)
     
-    move_to(lineStart)
-    await tween.finished
+    tween.connect("finished", on_moveAlongLineFinished)
     
-    move_to(lineEnd)                
-    await tween.finished
-    
-    onVertical = true
-    move_to(Vector2(position.x, endPosY))
-    
+
+func on_moveAlongLineFinished():
+    """
+    수평선 이동이 끝나면 하강, 중도 충돌 처리
+    """
+    dropMarker()
     # 이동 중 충돌 시그널이 이미 들어온 start/end area 처리
     for area in get_overlapping_areas():
         _on_area_entered(area)
@@ -57,8 +72,6 @@ func _on_area_entered(area):
     elif area.get_parent().name == "endManager":
         if area.get_node("mesh").modulate == $mesh.modulate:
             isCorrect = true
-    
-    
     
     
     

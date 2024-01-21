@@ -1,15 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://1pyvlcwm81yj"]
+[gd_scene load_steps=12 format=3 uid="uid://1pyvlcwm81yj"]
 
 [ext_resource type="Script" path="res://scripts/inGameManager.gd" id="1_61h2t"]
 [ext_resource type="Script" path="res://scripts/verticalLineManager.gd" id="2_0jiyk"]
 [ext_resource type="Script" path="res://scripts/horizontalLineManager.gd" id="4_82wdj"]
 [ext_resource type="Script" path="res://scripts/markerManager.gd" id="4_d8txm"]
+[ext_resource type="Texture2D" uid="uid://cc5fplcoqiudq" path="res://resources/eraseIcon.svg" id="5_gfqdx"]
 [ext_resource type="Script" path="res://scripts/inGamePlayButton.gd" id="5_ora5h"]
+[ext_resource type="Texture2D" uid="uid://b0kmq252m083" path="res://resources/hintIcon.svg" id="6_wtevk"]
+[ext_resource type="Texture2D" uid="uid://cat0d7v2w6vow" path="res://resources/playIcon.svg" id="7_qxrqn"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jlj83"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gw4lo"]
 size = Vector2(720, 40)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_is4g2"]
+content_margin_left = 10.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="inGame" type="Node2D"]
 
@@ -38,10 +54,9 @@ script = ExtResource("4_d8txm")
 position = Vector2(360, 1032)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="markerManager/markerGoal"]
-position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_gw4lo")
 
-[node name="inGameMenuButton" type="Button" parent="."]
+[node name="inGameChapterButton" type="Button" parent="."]
 offset_left = 32.0
 offset_top = 24.0
 offset_right = 104.0
@@ -55,19 +70,56 @@ offset_right = 682.0
 offset_bottom = 93.0
 text = "STORE"
 
-[node name="inGameResetButton" type="Button" parent="."]
-offset_left = 142.0
-offset_top = 1142.0
-offset_right = 310.0
-offset_bottom = 1197.0
-text = "RESET"
+[node name="inGameEraseButton" type="Button" parent="."]
+offset_left = 124.0
+offset_top = 1128.0
+offset_right = 188.0
+offset_bottom = 1192.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_is4g2")
+text = "
+"
+icon = ExtResource("5_gfqdx")
+icon_alignment = 1
+expand_icon = true
+
+[node name="inGameHintButton" type="Button" parent="."]
+offset_left = 328.0
+offset_top = 1129.0
+offset_right = 392.0
+offset_bottom = 1193.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_is4g2")
+text = "
+"
+icon = ExtResource("6_wtevk")
+icon_alignment = 1
+expand_icon = true
+
+[node name="hintNum" type="Label" parent="inGameHintButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.615
+anchor_top = 0.46
+anchor_right = 0.636
+anchor_bottom = 0.681
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "6
+"
 
 [node name="inGamePlayButton" type="Button" parent="."]
-offset_left = 400.0
-offset_top = 1142.0
-offset_right = 559.0
-offset_bottom = 1195.0
-text = "PLAY"
+offset_left = 551.0
+offset_top = 1126.0
+offset_right = 615.0
+offset_bottom = 1190.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_is4g2")
+text = "
+"
+icon = ExtResource("7_qxrqn")
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("5_ora5h")
 
 [connection signal="generateHorizontalLine" from="inGameManager" to="horizontalLineManager" method="_generate_level_horizontal_line"]
@@ -75,6 +127,7 @@ script = ExtResource("5_ora5h")
 [connection signal="generateVerticalLine" from="inGameManager" to="verticalLineManager" method="_on_in_game_manager_generate_vertical_line"]
 [connection signal="levelCompleted" from="markerManager" to="inGameManager" method="_on_marker_manager_level_completed"]
 [connection signal="area_entered" from="markerManager/markerGoal" to="markerManager" method="_on_marker_goal_area_entered"]
-[connection signal="pressed" from="inGameResetButton" to="horizontalLineManager" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="inGameChapterButton" to="inGameManager" method="_on_chapter_button_pressed"]
+[connection signal="pressed" from="inGameEraseButton" to="horizontalLineManager" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="inGamePlayButton" to="markerManager" method="_on_inGame_play_button_pressed"]
 [connection signal="pressed" from="inGamePlayButton" to="inGamePlayButton" method="_on_pressed"]

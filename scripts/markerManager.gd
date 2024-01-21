@@ -36,9 +36,8 @@ func resetMarkers():
         marker.isCorrect = false
         marker.onVertical = true
         marker.position = marker.startPos
-        if marker.tween:
-            marker.tween.kill()
-
+        marker.tween.kill()
+    await get_tree().create_timer(0.05).timeout
 
 func _on_inGame_play_button_pressed():
     # 시작 마커 아래로 이동 시작
@@ -46,7 +45,7 @@ func _on_inGame_play_button_pressed():
         isPlaying = true
         for marker in $startManager.get_children():
             marker.endPosY = endMarkerY
-            marker.move_to(Vector2(marker.position.x, endMarkerY))
+            marker.dropMarker()
     
     # 시작마커 이동 중지, 초기위치로 이동
     else:

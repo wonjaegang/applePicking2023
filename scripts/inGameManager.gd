@@ -1,7 +1,7 @@
 extends Node2D
 
 const LINE_MARGIN = 30
-const VERTICAL_OFFSET_Y = 300
+const VERTICAL_OFFSET_Y = 260
 const VERTICAL_INTERVAL_ARRAY = [0, 0, 200, 170, 150]
 const MARKER_OFFSET = 50
 
@@ -109,13 +109,15 @@ func _on_marker_manager_level_completed():
         star = 4
     elif usedLineNum == minUserLineNum1:
         star = 3
-    elif usedLineNum <= usedLineNum + 2:
+    elif usedLineNum <= minUserLineNum1 + 2:
         star = 2
     else:
         star = 1
     print(star)
 
 
+func _on_chapter_button_pressed():
+    get_tree().change_scene_to_file("res://chapterSelectScene.tscn")
 
 
 

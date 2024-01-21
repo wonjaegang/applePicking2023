@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw7bdr4w1fjtc"]
+
+[ext_resource type="Script" path="res://scripts/chapterSelect.gd" id="1_kakty"]
+
+[node name="chapterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kakty")
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.901961, 0.6, 0.396078, 1)
+
+[node name="playLevelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 971.0
+offset_right = 427.0
+offset_bottom = 1021.0
+text = "Level"
+
+[node name="goToHomeButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 31.0
+offset_right = 123.0
+offset_bottom = 116.0
+text = "home"
+
+[connection signal="pressed" from="playLevelButton" to="." method="_on_play_level_button_pressed"]
+[connection signal="pressed" from="goToHomeButton" to="." method="_on_go_to_home_button_pressed"]

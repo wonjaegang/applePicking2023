@@ -5,6 +5,7 @@ var yMax
 var userLineMinH
 var userLineColor
 var generatingLine = false
+var isChecking = false
 
 var horizontalLineScene = preload("res://assets/horizontalLine.tscn")
 
@@ -80,13 +81,18 @@ func setGeneratingUserLine():
     else:
         generatingLine = false
         # overlapping 계산이 상대적으로 느려 타이머 사용
-        await get_tree().create_timer(0.01).timeout
-        if not newline.checkIsProper():
-            newline.queue_free()
+        isChecking = true
+        await get_tree().create_timer(0.05).timeout
+        
+        # 삭제 전 터치로 이미 삭제 고려
+        if is_instance_valid(newline):
+            if not newline.checkIsProper():
+                newline.queue_free()
+        isChecking = false
 
 
 func _on_reset_button_pressed():
-    if $"../markerManager".isPlaying:
+    if $"../markerManager".isPlaying or isChecking:
         return
         
     for line in get_children():

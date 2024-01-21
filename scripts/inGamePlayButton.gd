@@ -8,8 +8,8 @@ func _on_pressed():
 
 func flipState():
     if isButtonPlay:
-        text = "STOP"
+        icon = ResourceLoader.load("res://resources/resetIcon.svg")
         isButtonPlay = false
-    else:
-        text = "PLAY"
+    else: 
+        icon = ResourceLoader.load("res://resources/playIcon.svg")
         isButtonPlay = true
