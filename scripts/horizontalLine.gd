@@ -69,7 +69,7 @@ func _on_area_exited(area):
         area.get_node("outerMesh").modulate = Color(1, 1, 1)
     
 
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(_viewport, event, _shape_idx):
     """
      선 클릭 시 삭제
     """

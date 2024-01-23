@@ -54,7 +54,7 @@ func _generate_level_horizontal_line(startPos, endPos, type, color):
     add_child(horizontalLine)
            
                                                                                         
-func _process(delta):
+func _process(_delta):
     if generatingLine:
         setGeneratingUserLine()     
           
@@ -66,7 +66,7 @@ func setGeneratingUserLine():
     var newline = get_child(-1)
     
     # 터치 중에는 마우스 포인터의 위치를 따라 선 이동
-    if Input.is_mouse_button_pressed(1):
+    if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
         var end = get_viewport().get_mouse_position()
         # 수직선에 닿았을 때
         if newline.endVerticalNode:
