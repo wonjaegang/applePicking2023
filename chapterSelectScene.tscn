@@ -1,15 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cw7bdr4w1fjtc"]
+[gd_scene load_steps=4 format=3 uid="uid://cw7bdr4w1fjtc"]
 
 [ext_resource type="Script" path="res://scripts/chapterSelect.gd" id="1_kakty"]
 [ext_resource type="Script" path="res://chapterScroll.gd" id="2_xey7s"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w8kgb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3e2l"]
-
-[sub_resource type="Theme" id="Theme_5h4t6"]
-HScrollBar/styles/scroll = SubResource("StyleBoxEmpty_w8kgb")
-VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_g3e2l")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yxkn"]
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="chapterSelect" type="Control"]
 layout_mode = 3
@@ -29,47 +27,39 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.901961, 0.6, 0.396078, 1)
 
-[node name="playLevelButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 277.0
-offset_top = 1111.0
-offset_right = 447.0
-offset_bottom = 1189.0
-text = "Level"
-
-[node name="goToHomeButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 31.0
-offset_right = 123.0
-offset_bottom = 116.0
-text = "home"
-
 [node name="chapterScroll" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 62.0
-offset_top = 177.0
-offset_right = 637.0
-offset_bottom = 1033.0
-theme = SubResource("Theme_5h4t6")
+layout_mode = 1
+anchor_left = 0.064
+anchor_right = 0.224
+anchor_bottom = 1.0
 script = ExtResource("2_xey7s")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="chapterScroll"]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scroll_vertical = 200
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="chapterScroll/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="emptyBoxTop" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 2
+color = Color(0, 0, 0, 0)
 
 [node name="ColorRect" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 400)
 layout_mode = 2
+color = Color(0.737255, 0.737255, 0.603922, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 400)
@@ -91,6 +81,21 @@ custom_minimum_size = Vector2(100, 400)
 layout_mode = 2
 color = Color(0.980392, 0.647059, 0.796078, 1)
 
+[node name="ColorRect6" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 400)
+layout_mode = 2
+color = Color(0.227451, 0.00784314, 0.133333, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 400)
+layout_mode = 2
+color = Color(0.815686, 0.862745, 0.572549, 1)
+
+[node name="emptyBoxBottom" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 1080)
+layout_mode = 2
+color = Color(0, 0, 0, 0)
+
 [node name="scrollButton" type="Button" parent="chapterScroll"]
 layout_mode = 1
 anchors_preset = 15
@@ -101,7 +106,41 @@ grow_vertical = 2
 focus_mode = 0
 flat = true
 
-[connection signal="pressed" from="playLevelButton" to="." method="_on_play_level_button_pressed"]
-[connection signal="pressed" from="goToHomeButton" to="." method="_on_go_to_home_button_pressed"]
+[node name="levelPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 48.0
+offset_right = 672.0
+offset_bottom = 1208.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5yxkn")
+
+[node name="GridContainer" type="GridContainer" parent="levelPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="playLevelButton" type="Button" parent="levelPanel/GridContainer"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+text = "Level"
+
+[node name="goToHomeButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 31.0
+offset_right = 123.0
+offset_bottom = 116.0
+text = "home"
+
 [connection signal="button_down" from="chapterScroll/scrollButton" to="chapterScroll" method="_on_button_down"]
 [connection signal="button_up" from="chapterScroll/scrollButton" to="chapterScroll" method="_on_button_up"]
+[connection signal="pressed" from="levelPanel/GridContainer/playLevelButton" to="." method="_on_play_level_button_pressed"]
+[connection signal="pressed" from="goToHomeButton" to="." method="_on_go_to_home_button_pressed"]
