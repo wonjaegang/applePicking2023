@@ -1,7 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw7bdr4w1fjtc"]
+[gd_scene load_steps=12 format=3 uid="uid://cw7bdr4w1fjtc"]
 
 [ext_resource type="Script" path="res://scripts/chapterSelect.gd" id="1_kakty"]
-[ext_resource type="Script" path="res://chapterScroll.gd" id="2_xey7s"]
+[ext_resource type="Script" path="res://scripts/chapterScroll.gd" id="2_xey7s"]
+[ext_resource type="Script" path="res://scripts/chapterNode.gd" id="3_aks6g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8nxw"]
+bg_color = Color(0.239216, 0.203922, 0.176471, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqipy"]
+bg_color = Color(0.239216, 0.203922, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nj3b"]
+bg_color = Color(0.329412, 0.411765, 0.588235, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 12
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_p6dvo"]
+font_size = 30
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tfcbj"]
+font_size = 30
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nmrlp"]
+font_size = 30
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08v6r"]
+bg_color = Color(0.239216, 0.203922, 0.176471, 1)
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yxkn"]
 corner_radius_top_left = 50
@@ -29,20 +68,21 @@ color = Color(0.901961, 0.6, 0.396078, 1)
 
 [node name="chapterScroll" type="Control" parent="."]
 layout_mode = 1
-anchor_left = 0.064
-anchor_right = 0.224
+anchor_right = 0.22
 anchor_bottom = 1.0
+offset_left = -0.0800018
 script = ExtResource("2_xey7s")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="chapterScroll"]
 clip_contents = false
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-scroll_vertical = 200
+scroll_vertical = 100
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
@@ -56,45 +96,170 @@ custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 color = Color(0, 0, 0, 0)
 
-[node name="ColorRect" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 400)
-layout_mode = 2
-color = Color(0.737255, 0.737255, 0.603922, 1)
+[node name="lineTopEndPanel" type="Panel" parent="chapterScroll/ScrollContainer/VBoxContainer/emptyBoxTop"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.6
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_d8nxw")
 
-[node name="ColorRect2" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
+[node name="chapter1" type="Control" parent="chapterScroll/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 400)
 layout_mode = 2
-color = Color(1, 0.211765, 0.831373, 1)
+script = ExtResource("3_aks6g")
 
-[node name="ColorRect3" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 400)
-layout_mode = 2
-color = Color(0.219608, 0.219608, 0.219608, 1)
+[node name="linePanel" type="Panel" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.6
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yqipy")
 
-[node name="ColorRect4" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 400)
-layout_mode = 2
-color = Color(0.0705882, 0.219608, 0.4, 1)
+[node name="circlePanel" type="Panel" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter1/linePanel"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_right = 25.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4nj3b")
 
-[node name="ColorRect5" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 400)
-layout_mode = 2
-color = Color(0.980392, 0.647059, 0.796078, 1)
+[node name="chapterLabel" type="Label" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+offset_left = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Chapter 1"
+label_settings = SubResource("LabelSettings_p6dvo")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ColorRect6" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 400)
-layout_mode = 2
-color = Color(0.227451, 0.00784314, 0.133333, 1)
+[node name="totalStarLabel" type="Label" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+offset_left = 130.0
+offset_top = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+text = " / 60"
+label_settings = SubResource("LabelSettings_tfcbj")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ColorRect7" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
+[node name="gottenStarLabel" type="Label" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.25
+anchor_right = 0.3
+anchor_bottom = 0.25
+offset_left = 130.0
+offset_top = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_nmrlp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="chapter2" type="Control" parent="chapterScroll/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 400)
 layout_mode = 2
-color = Color(0.815686, 0.862745, 0.572549, 1)
+script = ExtResource("3_aks6g")
+
+[node name="linePanel" type="Panel" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.6
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yqipy")
+
+[node name="circlePanel" type="Panel" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter2/linePanel"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_right = 25.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4nj3b")
+
+[node name="chapterLabel" type="Label" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+offset_left = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Chapter 1"
+label_settings = SubResource("LabelSettings_p6dvo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="totalStarLabel" type="Label" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+offset_left = 130.0
+offset_top = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+text = " / 60"
+label_settings = SubResource("LabelSettings_tfcbj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gottenStarLabel" type="Label" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.25
+anchor_right = 0.3
+anchor_bottom = 0.25
+offset_left = 130.0
+offset_top = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_nmrlp")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="emptyBoxBottom" type="ColorRect" parent="chapterScroll/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 1080)
+custom_minimum_size = Vector2(100, 980)
 layout_mode = 2
 color = Color(0, 0, 0, 0)
+
+[node name="lineBottomEndPanel" type="Panel" parent="chapterScroll/ScrollContainer/VBoxContainer/emptyBoxBottom"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_08v6r")
 
 [node name="scrollButton" type="Button" parent="chapterScroll"]
 layout_mode = 1
@@ -134,10 +299,10 @@ text = "Level"
 
 [node name="goToHomeButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 31.0
-offset_right = 123.0
-offset_bottom = 116.0
+offset_left = 18.0
+offset_top = 1183.0
+offset_right = 114.0
+offset_bottom = 1268.0
 text = "home"
 
 [connection signal="button_down" from="chapterScroll/scrollButton" to="chapterScroll" method="_on_button_down"]

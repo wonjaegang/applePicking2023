@@ -65,8 +65,8 @@ func _process(_delta):
     
     # 선택된 챕터 변경 시 로직
     if not lastSelectedChapterIdx == selectedChapterIdx:
-        $ScrollContainer/VBoxContainer.get_child(lastSelectedChapterIdx).color = Color(1, 1, 1)
-        $ScrollContainer/VBoxContainer.get_child(selectedChapterIdx).color = Color(0, 0, 0)
+        $ScrollContainer/VBoxContainer.get_child(lastSelectedChapterIdx).deselected()
+        $ScrollContainer/VBoxContainer.get_child(selectedChapterIdx).selected()
         lastSelectedChapterIdx = selectedChapterIdx
                         
 
