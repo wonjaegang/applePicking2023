@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://1pyvlcwm81yj"]
+[gd_scene load_steps=14 format=3 uid="uid://1pyvlcwm81yj"]
 
 [ext_resource type="Script" path="res://scripts/inGameManager.gd" id="1_61h2t"]
 [ext_resource type="Script" path="res://scripts/verticalLineManager.gd" id="2_0jiyk"]
 [ext_resource type="Script" path="res://scripts/horizontalLineManager.gd" id="4_82wdj"]
 [ext_resource type="Script" path="res://scripts/markerManager.gd" id="4_d8txm"]
+[ext_resource type="Texture2D" uid="uid://dta8367ivx8w6" path="res://resources/chapterIcon.svg" id="5_co5t2"]
 [ext_resource type="Texture2D" uid="uid://cc5fplcoqiudq" path="res://resources/eraseIcon.svg" id="5_gfqdx"]
 [ext_resource type="Script" path="res://scripts/inGamePlayButton.gd" id="5_ora5h"]
 [ext_resource type="Texture2D" uid="uid://b0kmq252m083" path="res://resources/hintIcon.svg" id="6_wtevk"]
+[ext_resource type="Texture2D" uid="uid://c17k2fwgvtvu1" path="res://resources/storeIcon.svg" id="6_x687m"]
 [ext_resource type="Texture2D" uid="uid://cat0d7v2w6vow" path="res://resources/playIcon.svg" id="7_qxrqn"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jlj83"]
@@ -57,18 +59,30 @@ position = Vector2(360, 1032)
 shape = SubResource("RectangleShape2D_gw4lo")
 
 [node name="inGameChapterButton" type="Button" parent="."]
-offset_left = 32.0
-offset_top = 24.0
-offset_right = 104.0
-offset_bottom = 88.0
-text = "CHAPTER"
+offset_left = 34.0
+offset_top = 37.0
+offset_right = 98.0
+offset_bottom = 101.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_is4g2")
+text = "
+"
+icon = ExtResource("5_co5t2")
+icon_alignment = 1
+expand_icon = true
 
 [node name="inGameStoreButton" type="Button" parent="."]
-offset_left = 611.0
-offset_top = 27.0
-offset_right = 682.0
-offset_bottom = 93.0
-text = "STORE"
+offset_left = 612.0
+offset_top = 38.0
+offset_right = 676.0
+offset_bottom = 102.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_is4g2")
+text = "
+"
+icon = ExtResource("6_x687m")
+icon_alignment = 1
+expand_icon = true
 
 [node name="inGameEraseButton" type="Button" parent="."]
 offset_left = 124.0

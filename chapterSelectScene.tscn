@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cw7bdr4w1fjtc"]
+[gd_scene load_steps=15 format=3 uid="uid://cw7bdr4w1fjtc"]
 
 [ext_resource type="Script" path="res://scripts/chapterSelect.gd" id="1_kakty"]
 [ext_resource type="Script" path="res://scripts/chapterScroll.gd" id="2_xey7s"]
 [ext_resource type="Script" path="res://scripts/chapterNode.gd" id="3_aks6g"]
+[ext_resource type="Texture2D" uid="uid://c17k2fwgvtvu1" path="res://resources/storeIcon.svg" id="4_glvo3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8nxw"]
 bg_color = Color(0.239216, 0.203922, 0.176471, 1)
@@ -14,13 +15,13 @@ bg_color = Color(0.239216, 0.203922, 0.176471, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nj3b"]
 bg_color = Color(0.329412, 0.411765, 0.588235, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 corner_detail = 12
 shadow_color = Color(0, 0, 0, 1)
-shadow_size = 15
+shadow_size = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_p6dvo"]
 font_size = 30
@@ -48,6 +49,24 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl67j"]
+content_margin_left = 10.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_dtyh7"]
+font_size = 30
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
 [node name="chapterSelect" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -68,7 +87,7 @@ color = Color(0.901961, 0.6, 0.396078, 1)
 
 [node name="chapterScroll" type="Control" parent="."]
 layout_mode = 1
-anchor_right = 0.22
+anchor_right = 0.25
 anchor_bottom = 1.0
 offset_left = -0.0800018
 script = ExtResource("2_xey7s")
@@ -120,23 +139,27 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_yqipy")
 [node name="circlePanel" type="Panel" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter1/linePanel"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -25.0
+offset_top = -25.0
 offset_right = 25.0
-offset_bottom = 50.0
+offset_bottom = 25.0
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4nj3b")
 
 [node name="chapterLabel" type="Label" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter1"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.25
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.25
-offset_left = 50.0
+anchor_bottom = 0.5
+offset_top = -150.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Chapter 1"
@@ -148,14 +171,14 @@ vertical_alignment = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.25
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.25
-offset_left = 130.0
-offset_top = 130.0
+anchor_bottom = 0.5
+offset_left = 60.0
+offset_top = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-text = " / 60"
+text = "/ 60"
 label_settings = SubResource("LabelSettings_tfcbj")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -163,12 +186,12 @@ vertical_alignment = 1
 [node name="gottenStarLabel" type="Label" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter1"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.25
-anchor_right = 0.3
-anchor_bottom = 0.25
-offset_left = 130.0
-offset_top = 130.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "0"
@@ -192,26 +215,30 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_yqipy")
 [node name="circlePanel" type="Panel" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter2/linePanel"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -25.0
+offset_top = -25.0
 offset_right = 25.0
-offset_bottom = 50.0
+offset_bottom = 25.0
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4nj3b")
 
 [node name="chapterLabel" type="Label" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.25
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.25
-offset_left = 50.0
+anchor_bottom = 0.5
+offset_top = -150.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Chapter 1"
+text = "Chapter 2"
 label_settings = SubResource("LabelSettings_p6dvo")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -220,14 +247,14 @@ vertical_alignment = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.25
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.25
-offset_left = 130.0
-offset_top = 130.0
+anchor_bottom = 0.5
+offset_left = 60.0
+offset_top = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-text = " / 60"
+text = "/ 60"
 label_settings = SubResource("LabelSettings_tfcbj")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -235,12 +262,12 @@ vertical_alignment = 1
 [node name="gottenStarLabel" type="Label" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter2"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.25
-anchor_right = 0.3
-anchor_bottom = 0.25
-offset_left = 130.0
-offset_top = 130.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "0"
@@ -274,7 +301,7 @@ flat = true
 [node name="levelPanel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 208.0
-offset_top = 48.0
+offset_top = 184.0
 offset_right = 672.0
 offset_bottom = 1208.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5yxkn")
@@ -293,9 +320,22 @@ grow_vertical = 2
 columns = 5
 
 [node name="playLevelButton" type="Button" parent="levelPanel/GridContainer"]
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 text = "Level"
+
+[node name="inGameStoreButton" type="Button" parent="."]
+offset_left = 622.0
+offset_top = 31.0
+offset_right = 686.0
+offset_bottom = 95.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_pl67j")
+text = "
+"
+icon = ExtResource("4_glvo3")
+icon_alignment = 1
+expand_icon = true
 
 [node name="goToHomeButton" type="Button" parent="."]
 layout_mode = 0
@@ -304,6 +344,16 @@ offset_top = 1183.0
 offset_right = 114.0
 offset_bottom = 1268.0
 text = "home"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 349.0
+offset_top = 38.0
+offset_right = 402.0
+offset_bottom = 88.0
+text = "42
+"
+label_settings = SubResource("LabelSettings_dtyh7")
 
 [connection signal="button_down" from="chapterScroll/scrollButton" to="chapterScroll" method="_on_button_down"]
 [connection signal="button_up" from="chapterScroll/scrollButton" to="chapterScroll" method="_on_button_up"]

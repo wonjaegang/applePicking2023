@@ -2,7 +2,7 @@ extends Control
 
 
 func selected():
-    $linePanel/circlePanel.custom_minimum_size = Vector2(100, 100)
+    $linePanel/circlePanel.custom_minimum_size = Vector2(70, 70)
 
 
 func deselected():
