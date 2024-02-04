@@ -25,7 +25,8 @@ var boardMap1 = [[1, 2, 3, 0],
 var lines1 = {type = ["nrm", "nrm", "nrm", "nrm"],
               colorDot = [null, null, null, null],}
 var minUserLineNum1 = 2
-                           
+
+
 
 func _ready():
     createBoard(boardMap1, lines1, chapterColor1)
