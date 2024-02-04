@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cw7bdr4w1fjtc"]
+[gd_scene load_steps=16 format=3 uid="uid://cw7bdr4w1fjtc"]
 
 [ext_resource type="Script" path="res://scripts/chapterSelect.gd" id="1_kakty"]
 [ext_resource type="Script" path="res://scripts/chapterScroll.gd" id="2_xey7s"]
 [ext_resource type="Script" path="res://scripts/chapterNode.gd" id="3_aks6g"]
 [ext_resource type="Texture2D" uid="uid://c17k2fwgvtvu1" path="res://resources/storeIcon.svg" id="4_glvo3"]
+[ext_resource type="Texture2D" uid="uid://dudocty54byoj" path="res://resources/fullStar.png" id="7_cfr11"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8nxw"]
 bg_color = Color(0.239216, 0.203922, 0.176471, 1)
@@ -44,12 +45,13 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yxkn"]
+bg_color = Color(0.854902, 0.490196, 0.333333, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl67j"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkhuh"]
 content_margin_left = 10.0
 bg_color = Color(0, 0, 0, 0)
 border_width_left = 3
@@ -75,6 +77,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kakty")
+metadata/_edit_lock_ = true
 
 [node name="background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -84,6 +87,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.901961, 0.6, 0.396078, 1)
+metadata/_edit_lock_ = true
 
 [node name="chapterScroll" type="Control" parent="."]
 layout_mode = 1
@@ -137,7 +141,6 @@ anchor_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yqipy")
 
 [node name="circlePanel" type="Panel" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter1/linePanel"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -213,7 +216,6 @@ anchor_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yqipy")
 
 [node name="circlePanel" type="Panel" parent="chapterScroll/ScrollContainer/VBoxContainer/chapter2/linePanel"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -297,6 +299,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 flat = true
+metadata/_edit_lock_ = true
 
 [node name="levelPanel" type="Panel" parent="."]
 layout_mode = 0
@@ -305,6 +308,7 @@ offset_top = 184.0
 offset_right = 672.0
 offset_bottom = 1208.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5yxkn")
+metadata/_edit_lock_ = true
 
 [node name="GridContainer" type="GridContainer" parent="levelPanel"]
 layout_mode = 1
@@ -318,19 +322,21 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 columns = 5
+metadata/_edit_lock_ = true
 
 [node name="playLevelButton" type="Button" parent="levelPanel/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 text = "Level"
 
 [node name="inGameStoreButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 622.0
 offset_top = 31.0
 offset_right = 686.0
 offset_bottom = 95.0
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_pl67j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vkhuh")
 text = "
 "
 icon = ExtResource("4_glvo3")
@@ -354,6 +360,11 @@ offset_bottom = 88.0
 text = "42
 "
 label_settings = SubResource("LabelSettings_dtyh7")
+
+[node name="FullStar" type="Sprite2D" parent="."]
+position = Vector2(303, 61)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_cfr11")
 
 [connection signal="button_down" from="chapterScroll/scrollButton" to="chapterScroll" method="_on_button_down"]
 [connection signal="button_up" from="chapterScroll/scrollButton" to="chapterScroll" method="_on_button_up"]
