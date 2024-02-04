@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cw7bdr4w1fjtc"]
+[gd_scene load_steps=17 format=3 uid="uid://cw7bdr4w1fjtc"]
 
 [ext_resource type="Script" path="res://scripts/chapterSelect.gd" id="1_kakty"]
 [ext_resource type="Script" path="res://scripts/chapterScroll.gd" id="2_xey7s"]
 [ext_resource type="Script" path="res://scripts/chapterNode.gd" id="3_aks6g"]
 [ext_resource type="Texture2D" uid="uid://c17k2fwgvtvu1" path="res://resources/storeIcon.svg" id="4_glvo3"]
+[ext_resource type="Script" path="res://scripts/levelGridContainer.gd" id="4_t0wuy"]
 [ext_resource type="Texture2D" uid="uid://dudocty54byoj" path="res://resources/fullStar.png" id="7_cfr11"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8nxw"]
@@ -321,13 +322,9 @@ offset_right = -30.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 5
+columns = 4
+script = ExtResource("4_t0wuy")
 metadata/_edit_lock_ = true
-
-[node name="playLevelButton" type="Button" parent="levelPanel/GridContainer"]
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 2
-text = "Level"
 
 [node name="inGameStoreButton" type="Button" parent="."]
 layout_mode = 0
@@ -368,5 +365,4 @@ texture = ExtResource("7_cfr11")
 
 [connection signal="button_down" from="chapterScroll/scrollButton" to="chapterScroll" method="_on_button_down"]
 [connection signal="button_up" from="chapterScroll/scrollButton" to="chapterScroll" method="_on_button_up"]
-[connection signal="pressed" from="levelPanel/GridContainer/playLevelButton" to="." method="_on_play_level_button_pressed"]
 [connection signal="pressed" from="goToHomeButton" to="." method="_on_go_to_home_button_pressed"]

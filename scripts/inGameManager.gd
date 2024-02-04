@@ -2,37 +2,34 @@ extends Node2D
 
 const LINE_MARGIN = 30
 const VERTICAL_OFFSET_Y = 260
-const VERTICAL_INTERVAL_ARRAY = [0, 0, 200, 170, 150]
+const VERTICAL_INTERVAL_ARRAY = [0, 0, 170, 170, 150]
 const MARKER_OFFSET = 50
 
 signal generateVerticalLine(pos, color)
 signal generateHorizontalLine(startPos, endPos, type, color)
 signal generateMarker(pos, color, isStart)
 
-var chapterColor1 = {background = Color("#edddd4"),
-                     vertical = Color("#283d3b"),
-                     horizontal = Color("283d3b"),
-                     user = Color("a999d0"),
-                     marker = [Color("197278"),
-                               Color("83a8a6"),
-                               Color("ae9d96"),
-                               Color("d99185"),],}
-var boardMap1 = [[1, 2, 3, 0],
-                 [1, 0, 3, 3],
-                 [0, 1, 4, 4],
-                 [2, 2, 0, 0],
-                 [0, 3, 2, 1],]
-var lines1 = {type = ["nrm", "nrm", "nrm", "nrm"],
-              colorDot = [null, null, null, null],}
-var minUserLineNum1 = 2
+var chapterColor
+var boardMap
+var lines
+var minUserLineNum
 
 
 
 func _ready():
-    createBoard(boardMap1, lines1, chapterColor1)
+    """
+    globalVariable 에 저장된 selected 챕터/레벨 정보 기반으로 보드 생성
+    """
+    var chapter = GlobalVariables.selectedChapter - 1
+    var level = GlobalVariables.selectedLevel - 1    
+    chapterColor = ChapterInfo.chapterInfo[chapter].chapterColor
+    boardMap = ChapterInfo.chapterInfo[chapter].levelInfo[level].boardMap
+    lines = ChapterInfo.chapterInfo[chapter].levelInfo[level].lines
+    minUserLineNum = ChapterInfo.chapterInfo[chapter].levelInfo[level].minUserLineNum
+    createBoard()
     
     
-func createBoard(boardMap: Array, lines: Dictionary, chapterColor: Dictionary):
+func createBoard():
     """
     보드정보에 맞추어 보드 생성
     """
@@ -106,11 +103,11 @@ func _on_marker_manager_level_completed():
     for horizontalLine in $"../horizontalLineManager".get_children():
         if horizontalLine.isUserLine:
             usedLineNum += 1
-    if usedLineNum < minUserLineNum1:
+    if usedLineNum < minUserLineNum:
         star = 4
-    elif usedLineNum == minUserLineNum1:
+    elif usedLineNum == minUserLineNum:
         star = 3
-    elif usedLineNum <= minUserLineNum1 + 2:
+    elif usedLineNum <= minUserLineNum + 2:
         star = 2
     else:
         star = 1

@@ -62,6 +62,7 @@ func _process(_delta):
                     
     # 선택된 챕터 계산
     selectedChapterIdx = min($ScrollContainer.scroll_vertical / CHAPTER_Y + 1, chapterNum)
+    GlobalVariables.selectedChapter = selectedChapterIdx
     
     # 선택된 챕터 변경 시 로직
     if not lastSelectedChapterIdx == selectedChapterIdx:

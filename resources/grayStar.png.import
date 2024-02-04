@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djd00v72l7lv7"
-path="res://.godot/imported/star.png-42f4daa6d48a40b8cf7774da611238b7.ctex"
+uid="uid://cokq7n5a8cwxe"
+path="res://.godot/imported/grayStar.png-ef9994931a50e2563aeecb7127564229.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/star.png"
-dest_files=["res://.godot/imported/star.png-42f4daa6d48a40b8cf7774da611238b7.ctex"]
+source_file="res://resources/grayStar.png"
+dest_files=["res://.godot/imported/grayStar.png-ef9994931a50e2563aeecb7127564229.ctex"]
 
 [params]
 

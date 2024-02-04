@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck8vat18dkjdp"]
+[gd_scene load_steps=7 format=3 uid="uid://ck8vat18dkjdp"]
 
-[ext_resource type="Texture2D" uid="uid://dudocty54byoj" path="res://resources/fullStar.png" id="1_nucps"]
+[ext_resource type="Texture2D" uid="uid://cokq7n5a8cwxe" path="res://resources/grayStar.png" id="1_6qwqr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0rnlh"]
 border_width_left = 2
@@ -17,8 +17,14 @@ font_size = 30
 font_color = Color(0, 0, 0, 1)
 outline_size = 10
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w402h"]
+texture = ExtResource("1_6qwqr")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vvgt5"]
+load_path = "res://.godot/imported/fullStar.png-169e85095bc3846a06970b9e99920ed2.ctex"
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_akjis"]
-texture = ExtResource("1_nucps")
+texture = SubResource("CompressedTexture2D_vvgt5")
 
 [node name="levelButton" type="Button"]
 anchors_preset = 15
@@ -42,6 +48,53 @@ text = "1"
 label_settings = SubResource("LabelSettings_7wpnw")
 horizontal_alignment = 1
 
+[node name="starLine3" type="Panel" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.75
+anchor_right = 0.75
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_w402h")
+
+[node name="starLine2" type="Panel" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.75
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_w402h")
+
+[node name="starLine1" type="Panel" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.75
+anchor_right = 0.25
+anchor_bottom = 0.75
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_w402h")
+
 [node name="star3" type="Panel" parent="."]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
@@ -50,10 +103,6 @@ anchor_left = 0.75
 anchor_top = 0.75
 anchor_right = 0.75
 anchor_bottom = 0.75
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -84,6 +133,10 @@ anchor_left = 0.25
 anchor_top = 0.75
 anchor_right = 0.25
 anchor_bottom = 0.75
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

@@ -1,7 +1,7 @@
 extends Resource
+class_name ChapterInfo
 
-
-var chapterInfo = \
+static var chapterInfo = \
 [
     # Chapter 1
     {
@@ -18,11 +18,11 @@ var chapterInfo = \
                 # Level 1
                 {
                     boardMap = [[1, 2,],
-                                [1, 1,],
+                                [0, 0,],
                                 [2, 1,],],                
-                    lines = {type = ["nrm",],
-                             colorDot = [null,],},            
-                    inUserLineNum = 1,
+                    lines = {type = [],
+                             colorDot = [],},            
+                    minUserLineNum = 1,
                 },                
                 # Level 2
                 {
@@ -32,7 +32,7 @@ var chapterInfo = \
                                 [1, 2, 0,],],                
                     lines = {type = [],
                              colorDot = [],},            
-                    inUserLineNum = 1,
+                    minUserLineNum = 2,
                 },                
                 # Level 3
                 {
@@ -42,7 +42,7 @@ var chapterInfo = \
                                 [0, 2, 1,],],                 
                     lines = {type = ["nrm",],
                              colorDot = [null,],},            
-                    inUserLineNum = 2,
+                    minUserLineNum = 2,
                 },                
                 # Level 4
                 {
@@ -53,7 +53,7 @@ var chapterInfo = \
                                 [1, 2, 3,],],                
                     lines = {type = ["nrm", "nrm",],
                              colorDot = [null, null,],},            
-                    inUserLineNum = 2,
+                    minUserLineNum = 2,
                 },            
                 # Level 5
                 {
@@ -64,7 +64,7 @@ var chapterInfo = \
                                 [0, 3, 2, 1],],           
                     lines = {type = ["nrm",],
                              colorDot = [null,],},            
-                    inUserLineNum = 5,
+                    minUserLineNum = 5,
                 },
             ],
     },
