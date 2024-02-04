@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ck8vat18dkjdp"]
+[gd_scene load_steps=8 format=3 uid="uid://ck8vat18dkjdp"]
 
+[ext_resource type="Script" path="res://scripts/levelButton.gd" id="1_2uwq0"]
 [ext_resource type="Texture2D" uid="uid://cokq7n5a8cwxe" path="res://resources/grayStar.png" id="1_6qwqr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0rnlh"]
@@ -30,12 +31,13 @@ texture = SubResource("CompressedTexture2D_vvgt5")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -650.0
-offset_bottom = -1210.0
+offset_right = -620.0
+offset_bottom = -1180.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_0rnlh")
+script = ExtResource("1_2uwq0")
 
 [node name="label" type="Label" parent="."]
 layout_mode = 1
@@ -49,7 +51,7 @@ label_settings = SubResource("LabelSettings_7wpnw")
 horizontal_alignment = 1
 
 [node name="starLine3" type="Panel" parent="."]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75
@@ -62,24 +64,20 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_w402h")
 
 [node name="starLine2" type="Panel" parent="."]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.75
 anchor_right = 0.5
 anchor_bottom = 0.75
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_w402h")
 
 [node name="starLine1" type="Panel" parent="."]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
@@ -96,7 +94,8 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_w402h")
 
 [node name="star3" type="Panel" parent="."]
-custom_minimum_size = Vector2(30, 30)
+visible = false
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75
@@ -109,34 +108,28 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_akjis")
 
 [node name="star2" type="Panel" parent="."]
-custom_minimum_size = Vector2(30, 30)
+visible = false
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.75
 anchor_right = 0.5
 anchor_bottom = 0.75
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_akjis")
 
 [node name="star1" type="Panel" parent="."]
-custom_minimum_size = Vector2(30, 30)
+visible = false
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
 anchor_top = 0.75
 anchor_right = 0.25
 anchor_bottom = 0.75
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

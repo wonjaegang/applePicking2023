@@ -9,4 +9,5 @@ func _ready():
         var levelButton = levelButtonScene.instantiate()
         levelButton.custom_minimum_size = Vector2(100, 100)
         levelButton.get_node("label").text = str(level)
+        levelButton.setStar(0)
         add_child(levelButton)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cw7bdr4w1fjtc"]
+[gd_scene load_steps=18 format=3 uid="uid://cw7bdr4w1fjtc"]
 
 [ext_resource type="Script" path="res://scripts/chapterSelect.gd" id="1_kakty"]
 [ext_resource type="Script" path="res://scripts/chapterScroll.gd" id="2_xey7s"]
@@ -66,6 +66,11 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_dtyh7"]
+font_size = 30
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dcvyv"]
 font_size = 30
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 1)
@@ -340,14 +345,6 @@ icon = ExtResource("4_glvo3")
 icon_alignment = 1
 expand_icon = true
 
-[node name="goToHomeButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 1183.0
-offset_right = 114.0
-offset_bottom = 1268.0
-text = "home"
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 349.0
@@ -357,6 +354,25 @@ offset_bottom = 88.0
 text = "42
 "
 label_settings = SubResource("LabelSettings_dtyh7")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+offset_left = 397.0
+offset_top = 39.0
+offset_right = 483.0
+offset_bottom = 81.0
+text = "/ 120"
+label_settings = SubResource("LabelSettings_dcvyv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="goToHomeButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 1183.0
+offset_right = 114.0
+offset_bottom = 1268.0
+text = "home"
 
 [node name="FullStar" type="Sprite2D" parent="."]
 position = Vector2(303, 61)
