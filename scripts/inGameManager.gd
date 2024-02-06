@@ -5,15 +5,12 @@ const VERTICAL_OFFSET_Y = 260
 const VERTICAL_INTERVAL_ARRAY = [0, 0, 170, 170, 150]
 const MARKER_OFFSET = 50
 
-signal generateVerticalLine(pos, color)
-signal generateHorizontalLine(startPos, endPos, type, color)
-signal generateMarker(pos, color, isStart)
-
 var chapterColor
 var boardMap
 var lines
 var minUserLineNum
 
+var levelCompleteScene = preload("res://assets/levelCompletePanel.tscn")
 
 
 func _ready():
@@ -34,7 +31,7 @@ func createBoard():
     보드정보에 맞추어 보드 생성
     """
     # 배경색 설정
-    get_node("../background").modulate = chapterColor.background
+    get_node("background").modulate = chapterColor.background
     
     # 선 생성을 위한 변수 선언
     var verticalHeight = preload("res://assets/verticalLine.tscn").instantiate().get_node("mesh").mesh.height
@@ -45,9 +42,9 @@ func createBoard():
     var gridHeight = (verticalHeight - 2 * LINE_MARGIN) / (mapSize[0] + 1)
     
     # Manager 파라미터 지정
-    $"../horizontalLineManager".yMin = VERTICAL_OFFSET_Y + LINE_MARGIN
-    $"../horizontalLineManager".yMax = VERTICAL_OFFSET_Y + verticalHeight - LINE_MARGIN
-    $"../horizontalLineManager".userLineColor = chapterColor.user
+    $horizontalLineManager.yMin = VERTICAL_OFFSET_Y + LINE_MARGIN
+    $horizontalLineManager.yMax = VERTICAL_OFFSET_Y + verticalHeight - LINE_MARGIN
+    $horizontalLineManager.userLineColor = chapterColor.user
     
     # 수직선 생성
     for verticalIdx in range(mapSize[1]):
@@ -55,20 +52,24 @@ func createBoard():
         verticalPos.append(pos)
         verticalX += verticalInterval
         
-        emit_signal("generateVerticalLine", pos, chapterColor.vertical)
+        $verticalLineManager.generateLine(pos, chapterColor.vertical)
         
+        # 시작 마커 생성
         var startMarkerType = boardMap[0][verticalIdx]
         if startMarkerType != 0:
             var markerPos = pos - Vector2(0, MARKER_OFFSET)
             var markerColor = chapterColor.marker[startMarkerType - 1]
-            emit_signal("generateMarker", markerPos, markerColor, true)
-        
+            $markerManager.generateMarker(markerPos, markerColor, true)
+            
+        # 종료 마커 생성
         var endMarkerType = boardMap[-1][verticalIdx]
         if endMarkerType != 0:
             var markerPos = pos + Vector2(0, MARKER_OFFSET + verticalHeight)
             var markerColor = chapterColor.marker[endMarkerType - 1]
-            emit_signal("generateMarker", markerPos, markerColor, false)
-        
+            $markerManager.generateMarker(markerPos, markerColor, false)
+    
+    # 수직선 터치 시그널 연결
+    $horizontalLineManager.connectLineGenerateSignal()
     
     # 수평선 생성
     for lineIdx in range(lines.type.size()):
@@ -88,19 +89,19 @@ func createBoard():
         var endPos = Vector2(verticalPos[posIdx[1][1]].x,
                              VERTICAL_OFFSET_Y + LINE_MARGIN +
                              gridHeight * (posIdx[1][0] + 1))
-        emit_signal("generateHorizontalLine",
-                    startPos,
-                    endPos,
-                    lines.type[lineIdx],
-                    chapterColor.horizontal)
-        # colorDot 정보 전달 필요
-        
+        $horizontalLineManager.generateLine(startPos, endPos,
+                                            lines.type[lineIdx],
+                                            chapterColor.horizontal)
+                    
     
 func _on_marker_manager_level_completed():
-    # 레벨 종료 시 점수 창 표시
+    """
+    레벨 완료 시 점수계산/다스플레이
+    """
+    # 점수(별) 계산
     var star = 0
     var usedLineNum = 0
-    for horizontalLine in $"../horizontalLineManager".get_children():
+    for horizontalLine in $horizontalLineManager.get_children():
         if horizontalLine.isUserLine:
             usedLineNum += 1
     if usedLineNum < minUserLineNum:
@@ -111,15 +112,44 @@ func _on_marker_manager_level_completed():
         star = 2
     else:
         star = 1
-    print(star)
-
-
-func _on_chapter_button_pressed():
+    
+    # 점수 패널 디스플레이
+    var scorePanel = levelCompleteScene.instantiate()
+    add_child(scorePanel)
+    scorePanel.setStar(star)
+    scorePanel.set_deferred("size", get_viewport_rect().size)
+    scorePanel.get_node("scorePanel/retryButton").pressed.connect(retry_button_pressed)
+    scorePanel.get_node("scorePanel/nextLevelButton").pressed.connect(nextLevel_button_pressed)
+    scorePanel.get_node("scorePanel/selectLevelButton").pressed.connect(chapter_button_pressed)
+    
+    
+    
+func chapter_button_pressed():
     get_tree().change_scene_to_file("res://chapterSelectScene.tscn")
+    
 
-
-
-
-
-
+func retry_button_pressed():
+    get_tree().change_scene_to_file("res://inGame.tscn")
+    
+    
+func nextLevel_button_pressed():
+    GlobalVariables.selectedLevel += 1
+    
+    # level max일때 챕터로 돌아가는 로직 필요
+    
+    get_tree().change_scene_to_file("res://inGame.tscn")
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 

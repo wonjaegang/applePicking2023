@@ -9,7 +9,7 @@ var correctMarkerNum = 0
 signal levelCompleted
 
 
-func _on_in_game_manager_generate_marker(pos: Vector2, color: Color, isStart: bool):
+func generateMarker(pos: Vector2, color: Color, isStart: bool):
     """
     boardMap에 따라 마커 생성
     """

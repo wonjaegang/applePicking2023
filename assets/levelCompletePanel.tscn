@@ -1,0 +1,143 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhsnxm8ovoyh3"]
+
+[ext_resource type="Script" path="res://scripts/levelCompletePanel.gd" id="1_3hpbh"]
+[ext_resource type="Texture2D" uid="uid://cokq7n5a8cwxe" path="res://resources/grayStar.png" id="1_cwpja"]
+[ext_resource type="Texture2D" uid="uid://dgccfmj77usfo" path="res://resources/resetIcon.svg" id="2_gu7hs"]
+[ext_resource type="Texture2D" uid="uid://dta8367ivx8w6" path="res://resources/chapterIcon.svg" id="3_fwie8"]
+[ext_resource type="Texture2D" uid="uid://pqb317a13os8" path="res://resources/nextIcon.svg" id="4_it4cj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bidh"]
+bg_color = Color(0.6, 0.6, 0.6, 0.294118)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td0mu"]
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a61t2"]
+texture = ExtResource("1_cwpja")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rwwpe"]
+load_path = "res://.godot/imported/fullStar.png-169e85095bc3846a06970b9e99920ed2.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrxvs"]
+texture = SubResource("CompressedTexture2D_rwwpe")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ue66t"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.862745, 0.6, 0.6, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="levelCompletePanel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6bidh")
+script = ExtResource("1_3hpbh")
+metadata/_edit_lock_ = true
+
+[node name="scorePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.355
+anchor_right = 0.9
+anchor_bottom = 0.65
+theme_override_styles/panel = SubResource("StyleBoxFlat_td0mu")
+metadata/_edit_lock_ = true
+
+[node name="starLine3" type="Panel" parent="scorePanel"]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 83.6
+offset_right = 413.0
+offset_bottom = 149.6
+theme_override_styles/panel = SubResource("StyleBoxTexture_a61t2")
+
+[node name="starLine2" type="Panel" parent="scorePanel"]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 86.6
+offset_right = 309.0
+offset_bottom = 152.6
+theme_override_styles/panel = SubResource("StyleBoxTexture_a61t2")
+
+[node name="starLine1" type="Panel" parent="scorePanel"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 88.6
+offset_right = 201.0
+offset_bottom = 154.6
+theme_override_styles/panel = SubResource("StyleBoxTexture_a61t2")
+
+[node name="star3" type="Panel" parent="scorePanel"]
+visible = false
+layout_mode = 0
+offset_left = 343.0
+offset_top = 81.6
+offset_right = 410.0
+offset_bottom = 147.6
+theme_override_styles/panel = SubResource("StyleBoxTexture_yrxvs")
+
+[node name="star2" type="Panel" parent="scorePanel"]
+visible = false
+layout_mode = 0
+offset_left = 246.0
+offset_top = 86.6
+offset_right = 313.0
+offset_bottom = 152.6
+theme_override_styles/panel = SubResource("StyleBoxTexture_yrxvs")
+
+[node name="star1" type="Panel" parent="scorePanel"]
+visible = false
+layout_mode = 0
+offset_left = 133.0
+offset_top = 85.6
+offset_right = 200.0
+offset_bottom = 151.6
+theme_override_styles/panel = SubResource("StyleBoxTexture_yrxvs")
+
+[node name="retryButton" type="Button" parent="scorePanel"]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 238.6
+offset_right = 464.0
+offset_bottom = 301.6
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ue66t")
+icon = ExtResource("2_gu7hs")
+icon_alignment = 1
+expand_icon = true
+
+[node name="selectLevelButton" type="Button" parent="scorePanel"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 238.6
+offset_right = 185.0
+offset_bottom = 301.6
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ue66t")
+icon = ExtResource("3_fwie8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="nextLevelButton" type="Button" parent="scorePanel"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 237.6
+offset_right = 317.0
+offset_bottom = 300.6
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ue66t")
+icon = ExtResource("4_it4cj")
+icon_alignment = 1
+expand_icon = true

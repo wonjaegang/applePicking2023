@@ -1,6 +1,6 @@
 extends Area2D
 
-const SPEED = 570
+const SPEED = 600
 var tween
 var startPos
 var endPosY

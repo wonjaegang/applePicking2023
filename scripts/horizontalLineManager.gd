@@ -10,8 +10,10 @@ var isChecking = false
 var horizontalLineScene = preload("res://assets/horizontalLine.tscn")
 
 
-func _ready():
-    # 수직선 시그널 연결
+func connectLineGenerateSignal():
+    """
+    수직선 시그널 연결
+    """
     for verticalLine in $"../verticalLineManager".get_children():
         verticalLine.verticalLinePressed.connect(_vertical_line_pressed)
 
@@ -25,20 +27,21 @@ func _vertical_line_pressed(verticalLineNode: Node2D):
         
     generatingLine = true
     var userLine = horizontalLineScene.instantiate()
+    add_child(userLine)
     userLine.isUserLine = true
     userLine.startVerticalNode = verticalLineNode
     userLine.get_node("mesh").modulate = userLineColor
     var posX = verticalLineNode.position.x
     var posY = max(min(get_viewport().get_mouse_position().y, yMax), yMin)
     userLine.setLinePosition(Vector2(posX, posY), Vector2(posX, posY))
-    add_child(userLine)
                 
      
-func _generate_level_horizontal_line(startPos, endPos, type, color):
+func generateLine(startPos, endPos, type, color):
     """
     레벨 시작 시 수평선 생성
     """
     var horizontalLine = horizontalLineScene.instantiate()
+    add_child(horizontalLine)
     if type == "nrm":
         pass
     elif type == "arR":
@@ -51,8 +54,7 @@ func _generate_level_horizontal_line(startPos, endPos, type, color):
         pass
     horizontalLine.get_node("mesh").modulate = color
     horizontalLine.setLinePosition(startPos, endPos)
-    add_child(horizontalLine)
-           
+
                                                                                         
 func _process(_delta):
     if generatingLine:

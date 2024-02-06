@@ -27,7 +27,6 @@ func setLinePosition(startPos: Vector2, endPos: Vector2):
     $CollisionShape2D.position.y = position_y    
     
     
-    
 func checkIsProper():
     """
     생성 가능한 라인인지 판단:
