@@ -10,19 +10,20 @@ var boardMap
 var lines
 var minUserLineNum
 
+var chapter = GlobalVariables.selectedChapter
+var level = GlobalVariables.selectedLevel
+    
 var levelCompleteScene = preload("res://assets/levelCompletePanel.tscn")
 
 
 func _ready():
     """
     globalVariable 에 저장된 selected 챕터/레벨 정보 기반으로 보드 생성
-    """
-    var chapter = GlobalVariables.selectedChapter - 1
-    var level = GlobalVariables.selectedLevel - 1    
-    chapterColor = ChapterInfo.chapterInfo[chapter].chapterColor
-    boardMap = ChapterInfo.chapterInfo[chapter].levelInfo[level].boardMap
-    lines = ChapterInfo.chapterInfo[chapter].levelInfo[level].lines
-    minUserLineNum = ChapterInfo.chapterInfo[chapter].levelInfo[level].minUserLineNum
+    """  
+    chapterColor = ChapterInfo.chapterInfo[chapter-1].chapterColor
+    boardMap = ChapterInfo.chapterInfo[chapter-1].levelInfo[level-1].boardMap
+    lines = ChapterInfo.chapterInfo[chapter-1].levelInfo[level-1].lines
+    minUserLineNum = ChapterInfo.chapterInfo[chapter-1].levelInfo[level-1].minUserLineNum
     createBoard()
     
     
@@ -125,19 +126,29 @@ func _on_marker_manager_level_completed():
     
     
 func chapter_button_pressed():
+    """
+    챕터 선택 씬으로 이동
+    """
     get_tree().change_scene_to_file("res://chapterSelectScene.tscn")
     
 
 func retry_button_pressed():
+    """
+    인게임 씬 재로드
+    """
     get_tree().change_scene_to_file("res://inGame.tscn")
     
     
 func nextLevel_button_pressed():
+    """
+    다음 레벨 이동. 마지막 레벨의 경우, 챕터 선택씬으로 이동
+    """
     GlobalVariables.selectedLevel += 1
-    
-    # level max일때 챕터로 돌아가는 로직 필요
-    
-    get_tree().change_scene_to_file("res://inGame.tscn")
+    if GlobalVariables.selectedLevel > len(ChapterInfo.chapterInfo[chapter-1].levelInfo):
+        GlobalVariables.selectedLevel = 1
+        get_tree().change_scene_to_file("res://chapterSelectScene.tscn")
+    else:
+        get_tree().change_scene_to_file("res://inGame.tscn")
     
     
     
