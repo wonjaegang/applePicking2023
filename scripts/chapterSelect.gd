@@ -8,6 +8,7 @@ func _ready():
         level += 1
         levelButton.pressed.connect(_on_play_level_button_pressed.bind(level))
 
+
 func _on_play_level_button_pressed(level):
     GlobalVariables.selectedLevel = level
     get_tree().change_scene_to_file("res://inGame.tscn")

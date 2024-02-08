@@ -20,12 +20,19 @@ func _ready():
     """
     globalVariable 에 저장된 selected 챕터/레벨 정보 기반으로 보드 생성
     """  
+    getSelectedLevelInfo()
+    createBoard()
+    
+    
+func getSelectedLevelInfo():
+    """
+    ChapterInfo 클래스에서 선택한 챕터/레벨 정보 불러오기
+    """
     chapterColor = ChapterInfo.chapterInfo[chapter-1].chapterColor
     boardMap = ChapterInfo.chapterInfo[chapter-1].levelInfo[level-1].boardMap
     lines = ChapterInfo.chapterInfo[chapter-1].levelInfo[level-1].lines
     minUserLineNum = ChapterInfo.chapterInfo[chapter-1].levelInfo[level-1].minUserLineNum
-    createBoard()
-    
+
     
 func createBoard():
     """
@@ -33,6 +40,9 @@ func createBoard():
     """
     # 배경색 설정
     get_node("background").modulate = chapterColor.background
+    
+    # 레벨 라벨 표시
+    $levelLabel.text = str(chapter) + ' - ' + str(level)
     
     # 선 생성을 위한 변수 선언
     var verticalHeight = preload("res://assets/verticalLine.tscn").instantiate().get_node("mesh").mesh.height
@@ -122,7 +132,6 @@ func _on_marker_manager_level_completed():
     scorePanel.get_node("scorePanel/retryButton").pressed.connect(retry_button_pressed)
     scorePanel.get_node("scorePanel/nextLevelButton").pressed.connect(nextLevel_button_pressed)
     scorePanel.get_node("scorePanel/selectLevelButton").pressed.connect(chapter_button_pressed)
-    
     
     
 func chapter_button_pressed():
