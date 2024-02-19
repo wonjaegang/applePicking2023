@@ -8,7 +8,8 @@ const MARKER_OFFSET = 50
 var chapterColor
 var boardMap
 var lines
-var minUserLineNum
+var answerInfo
+var answerNum
 
 var chapter = GlobalVariables.selectedChapter
 var level = GlobalVariables.selectedLevel
@@ -26,12 +27,13 @@ func _ready():
     
 func getSelectedLevelInfo():
     """
-    ChapterInfo 클래스에서 선택한 챕터/레벨 정보 불러오기
+    ChapterInfo 클래스에서 선택한 챕터/레벨/정답 정보 불러오기
     """
     chapterColor = ChapterInfo.chapterInfo[chapter-1].chapterColor
     boardMap = ChapterInfo.chapterInfo[chapter-1].levelInfo[level-1].boardMap
     lines = ChapterInfo.chapterInfo[chapter-1].levelInfo[level-1].lines
-    minUserLineNum = ChapterInfo.chapterInfo[chapter-1].levelInfo[level-1].minUserLineNum
+    answerInfo = ChapterInfo.chapterInfo[chapter-1].levelInfo[level-1].answer
+    answerNum = answerInfo.map(func _max(arr): return arr.max()).max()
 
     
 func createBoard():
@@ -115,11 +117,11 @@ func _on_marker_manager_level_completed():
     for horizontalLine in $horizontalLineManager.get_children():
         if horizontalLine.isUserLine:
             usedLineNum += 1
-    if usedLineNum < minUserLineNum:
+    if usedLineNum < answerNum:
         star = 4
-    elif usedLineNum == minUserLineNum:
+    elif usedLineNum == answerNum:
         star = 3
-    elif usedLineNum <= minUserLineNum + 2:
+    elif usedLineNum <= answerNum + 2:
         star = 2
     else:
         star = 1

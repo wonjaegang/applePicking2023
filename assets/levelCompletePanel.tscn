@@ -80,6 +80,7 @@ offset_bottom = 155.6
 theme_override_styles/panel = SubResource("StyleBoxTexture_a61t2")
 
 [node name="star3" type="Panel" parent="scorePanel"]
+visible = false
 layout_mode = 0
 offset_left = 364.0
 offset_top = 89.6
@@ -88,6 +89,7 @@ offset_bottom = 155.6
 theme_override_styles/panel = SubResource("StyleBoxTexture_yrxvs")
 
 [node name="star2" type="Panel" parent="scorePanel"]
+visible = false
 layout_mode = 0
 offset_left = 248.0
 offset_top = 89.6
@@ -96,6 +98,7 @@ offset_bottom = 155.6
 theme_override_styles/panel = SubResource("StyleBoxTexture_yrxvs")
 
 [node name="star1" type="Panel" parent="scorePanel"]
+visible = false
 layout_mode = 0
 offset_left = 136.0
 offset_top = 89.6

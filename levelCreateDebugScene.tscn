@@ -1,0 +1,227 @@
+[gd_scene load_steps=13 format=3 uid="uid://cywkhgpedbadg"]
+
+[ext_resource type="Script" path="res://scripts/verticalLineManager.gd" id="2_sufg1"]
+[ext_resource type="Script" path="res://scripts/horizontalLineManager.gd" id="3_ejtsr"]
+[ext_resource type="Script" path="res://scripts/markerManager.gd" id="4_ghyli"]
+[ext_resource type="Texture2D" uid="uid://dta8367ivx8w6" path="res://resources/chapterIcon.svg" id="5_7laxs"]
+[ext_resource type="Texture2D" uid="uid://cc5fplcoqiudq" path="res://resources/eraseIcon.svg" id="7_8j38r"]
+[ext_resource type="Texture2D" uid="uid://cat0d7v2w6vow" path="res://resources/playIcon.svg" id="9_rwo4y"]
+[ext_resource type="Script" path="res://scripts/inGamePlayButton.gd" id="10_mwhsv"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jlj83"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gw4lo"]
+size = Vector2(720, 40)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_is4g2"]
+content_margin_left = 10.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7anb"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_us2fs"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="inGame" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(360, 640)
+scale = Vector2(720, 1280)
+texture = SubResource("CanvasTexture_jlj83")
+metadata/_edit_lock_ = true
+
+[node name="verticalLineManager" type="Node2D" parent="."]
+script = ExtResource("2_sufg1")
+
+[node name="horizontalLineManager" type="Node2D" parent="."]
+script = ExtResource("3_ejtsr")
+
+[node name="markerManager" type="Node2D" parent="."]
+script = ExtResource("4_ghyli")
+
+[node name="startManager" type="Node2D" parent="markerManager"]
+
+[node name="endManager" type="Node2D" parent="markerManager"]
+
+[node name="markerGoal" type="Area2D" parent="markerManager"]
+position = Vector2(360, 1032)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="markerManager/markerGoal"]
+shape = SubResource("RectangleShape2D_gw4lo")
+
+[node name="inGameChapterButton" type="Button" parent="."]
+offset_left = 34.0
+offset_top = 37.0
+offset_right = 98.0
+offset_bottom = 101.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_is4g2")
+text = "
+"
+icon = ExtResource("5_7laxs")
+icon_alignment = 1
+expand_icon = true
+
+[node name="inGameEraseButton" type="Button" parent="."]
+offset_left = 124.0
+offset_top = 1128.0
+offset_right = 188.0
+offset_bottom = 1192.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_is4g2")
+text = "
+"
+icon = ExtResource("7_8j38r")
+icon_alignment = 1
+expand_icon = true
+
+[node name="inGamePlayButton" type="Button" parent="."]
+offset_left = 551.0
+offset_top = 1126.0
+offset_right = 615.0
+offset_bottom = 1190.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_is4g2")
+text = "
+"
+icon = ExtResource("9_rwo4y")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("10_mwhsv")
+
+[node name="setChapter" type="Panel" parent="."]
+offset_left = 136.0
+offset_top = 16.0
+offset_right = 336.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f7anb")
+
+[node name="SpinBox" type="SpinBox" parent="setChapter"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.53
+anchor_top = 0.15
+anchor_right = 0.93
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="setChapter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Chapter"
+label_settings = SubResource("LabelSettings_us2fs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="setLevel" type="Panel" parent="."]
+offset_left = 136.0
+offset_top = 70.0
+offset_right = 336.0
+offset_bottom = 118.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f7anb")
+
+[node name="SpinBox" type="SpinBox" parent="setLevel"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.53
+anchor_top = 0.15
+anchor_right = 0.93
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="setLevel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level
+"
+label_settings = SubResource("LabelSettings_us2fs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="setVerticalLineNum" type="Panel" parent="."]
+offset_left = 392.0
+offset_top = 16.0
+offset_right = 592.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f7anb")
+
+[node name="SpinBox" type="SpinBox" parent="setVerticalLineNum"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.53
+anchor_top = 0.15
+anchor_right = 0.93
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="setVerticalLineNum"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lines"
+label_settings = SubResource("LabelSettings_us2fs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="."]
+offset_left = 408.0
+offset_top = 80.0
+offset_right = 517.0
+offset_bottom = 111.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Horizontal"
+
+[connection signal="levelCompleted" from="markerManager" to="." method="_on_marker_manager_level_completed"]
+[connection signal="area_entered" from="markerManager/markerGoal" to="markerManager" method="_on_marker_goal_area_entered"]
+[connection signal="pressed" from="inGameChapterButton" to="." method="chapter_button_pressed"]
+[connection signal="pressed" from="inGameEraseButton" to="horizontalLineManager" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="inGamePlayButton" to="markerManager" method="_on_inGame_play_button_pressed"]
+[connection signal="pressed" from="inGamePlayButton" to="inGamePlayButton" method="_on_pressed"]
